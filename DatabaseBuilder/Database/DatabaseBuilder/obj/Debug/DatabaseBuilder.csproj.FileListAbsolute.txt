@@ -1,0 +1,7 @@
+C:\Users\rot4ry\Desktop\InternetShop\DatabaseBuilder\Database\DatabaseBuilder\bin\Debug\DatabaseBuilder.exe.config
+C:\Users\rot4ry\Desktop\InternetShop\DatabaseBuilder\Database\DatabaseBuilder\bin\Debug\DatabaseBuilder.exe
+C:\Users\rot4ry\Desktop\InternetShop\DatabaseBuilder\Database\DatabaseBuilder\bin\Debug\DatabaseBuilder.pdb
+C:\Users\rot4ry\Desktop\InternetShop\DatabaseBuilder\Database\DatabaseBuilder\obj\Debug\DatabaseBuilder.csprojAssemblyReference.cache
+C:\Users\rot4ry\Desktop\InternetShop\DatabaseBuilder\Database\DatabaseBuilder\obj\Debug\DatabaseBuilder.csproj.CoreCompileInputs.cache
+C:\Users\rot4ry\Desktop\InternetShop\DatabaseBuilder\Database\DatabaseBuilder\obj\Debug\DatabaseBuilder.exe
+C:\Users\rot4ry\Desktop\InternetShop\DatabaseBuilder\Database\DatabaseBuilder\obj\Debug\DatabaseBuilder.pdb
