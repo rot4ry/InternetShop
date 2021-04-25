@@ -1,5 +1,4 @@
 ﻿using System;
-//using System.Drawing.Bitmap;
 
 namespace DatabaseBuilder.Entities
 {
@@ -12,7 +11,10 @@ namespace DatabaseBuilder.Entities
         public DateTime? SentDate { get; set; }
         public string SentToAddress { get; set; }
         public bool IsInvoiced { get; set; }
-        //public Image? Invoice { get; set; }
-        //public Image? InvoiceCopy { get; set; }
+
+
+        //Image type -> byte[] ?
+        public byte[] Invoice { get; set; }
+        public byte[] InvoiceCopy { get; set; }
     }
 }
