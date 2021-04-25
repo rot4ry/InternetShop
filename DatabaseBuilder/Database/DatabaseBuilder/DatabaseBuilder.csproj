@@ -53,6 +53,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Context.cs" />
+    <Compile Include="Entities\Category.cs" />
+    <Compile Include="Entities\Client.cs" />
+    <Compile Include="Entities\Order.cs" />
+    <Compile Include="Entities\OrderDetail.cs" />
+    <Compile Include="Entities\Parameter.cs" />
+    <Compile Include="Entities\ProductPicture.cs" />
+    <Compile Include="Entities\Product.cs" />
+    <Compile Include="Entities\ProductParameter.cs" />
+    <Compile Include="Entities\VAT.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
