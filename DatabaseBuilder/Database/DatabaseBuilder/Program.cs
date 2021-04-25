@@ -10,7 +10,11 @@ namespace DatabaseBuilder
     {
         public static void Main(string[] args)
         {
-            
+            //db context
+            //arrays
+            //randomizer
+            //seeder
+            Console.ReadLine();
         }
     }
 }
