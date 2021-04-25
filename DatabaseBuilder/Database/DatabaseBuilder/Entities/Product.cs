@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace DatabaseBuilder.Entities
+﻿namespace DatabaseBuilder.Entities
 {
     public class Product
     {
-        public int ProductID { get; set; }
-        public int CategoryID { get; set; }
+        public int ProductID { get; set; }  //Primary Key
+        public int CategoryID { get; set; } //Foreign Key
         public string ProductName { get; set; }
         public string Brand { get; set; }
         public string ProductDescription { get; set; }  //Not nullable!
