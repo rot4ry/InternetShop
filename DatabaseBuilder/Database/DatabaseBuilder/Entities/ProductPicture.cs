@@ -1,5 +1,8 @@
 ﻿namespace DatabaseBuilder.Entities
 {
+    /// <summary>
+    /// Describes database table
+    /// </summary>
     public class ProductPicture
     {
         public int PictureID { get; set; }  //Primary Key

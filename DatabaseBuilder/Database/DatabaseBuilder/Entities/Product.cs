@@ -1,5 +1,8 @@
 ﻿namespace DatabaseBuilder.Entities
 {
+    /// <summary>
+    /// Describes database table
+    /// </summary>
     public class Product
     {
         public int ProductID { get; set; }  //Primary Key

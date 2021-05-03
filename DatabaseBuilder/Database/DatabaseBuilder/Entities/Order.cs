@@ -2,6 +2,9 @@
 
 namespace DatabaseBuilder.Entities
 {
+    /// <summary>
+    /// Describes database table
+    /// </summary>
     public class Order
     {
         public int OrderID { get; set; }    //Primary Key

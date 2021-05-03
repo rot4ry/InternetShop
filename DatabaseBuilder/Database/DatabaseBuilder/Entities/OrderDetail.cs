@@ -1,5 +1,8 @@
 ﻿namespace DatabaseBuilder.Entities
 {
+    /// <summary>
+    /// Describes database table
+    /// </summary>
     public class OrderDetail
     {
         public int OrderID { get; set; }    //Primare && Foreign Key

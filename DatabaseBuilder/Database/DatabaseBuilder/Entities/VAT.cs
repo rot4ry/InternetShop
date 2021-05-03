@@ -2,6 +2,9 @@
 
 namespace DatabaseBuilder.Entities
 {
+    /// <summary>
+    /// Describes database table
+    /// </summary>
     public class VAT
     {
         public DateTime DateSince { get; set; } //Primary Key

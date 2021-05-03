@@ -1,5 +1,8 @@
 ﻿namespace DatabaseBuilder.Entities
 {
+    /// <summary>
+    /// Describes database table
+    /// </summary>
     public class Parameter
     {
         public int ParameterID { get; set; }    //Primary Key  
