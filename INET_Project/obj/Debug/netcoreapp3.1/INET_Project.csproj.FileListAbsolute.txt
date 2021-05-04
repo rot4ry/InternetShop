@@ -202,8 +202,6 @@ C:\Users\pleka\Desktop\InternetShop\InternetShop\INET_Project\obj\Debug\netcorea
 C:\Users\pleka\Desktop\InternetShop\InternetShop\INET_Project\obj\Debug\netcoreapp3.1\INET_Project.TagHelpers.input.cache
 C:\Users\pleka\Desktop\InternetShop\InternetShop\INET_Project\obj\Debug\netcoreapp3.1\INET_Project.TagHelpers.output.cache
 C:\Users\pleka\Desktop\InternetShop\InternetShop\INET_Project\obj\Debug\netcoreapp3.1\INET_Project.RazorCoreGenerate.cache
-C:\Users\pleka\Desktop\InternetShop\InternetShop\INET_Project\obj\Debug\netcoreapp3.1\Razor\Views\Home\Main_Page.cshtml.g.cs
-C:\Users\pleka\Desktop\InternetShop\InternetShop\INET_Project\obj\Debug\netcoreapp3.1\Razor\Views\Item\Item_Page.cshtml.g.cs
 C:\Users\pleka\Desktop\InternetShop\InternetShop\INET_Project\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Error.cshtml.g.cs
 C:\Users\pleka\Desktop\InternetShop\InternetShop\INET_Project\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Layout.cshtml.g.cs
 C:\Users\pleka\Desktop\InternetShop\InternetShop\INET_Project\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_ValidationScriptsPartial.cshtml.g.cs
@@ -218,3 +216,4 @@ C:\Users\pleka\Desktop\InternetShop\InternetShop\INET_Project\obj\Debug\netcorea
 C:\Users\pleka\Desktop\InternetShop\InternetShop\INET_Project\obj\Debug\netcoreapp3.1\INET_Project.dll
 C:\Users\pleka\Desktop\InternetShop\InternetShop\INET_Project\obj\Debug\netcoreapp3.1\INET_Project.pdb
 C:\Users\pleka\Desktop\InternetShop\InternetShop\INET_Project\obj\Debug\netcoreapp3.1\INET_Project.genruntimeconfig.cache
+C:\Users\pleka\Desktop\InternetShop\InternetShop\INET_Project\obj\Debug\netcoreapp3.1\Razor\Views\Home\Main_Page.cshtml.g.cs

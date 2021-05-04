@@ -11,6 +11,12 @@ namespace INET_Project.Controllers
 {
     public class HomeController : Controller
     {
+
+        public IActionResult Main_Page()
+        {
+            return View();
+        }
+
         private readonly ILogger<HomeController> _logger;
 
         public HomeController(ILogger<HomeController> logger)
@@ -18,7 +24,12 @@ namespace INET_Project.Controllers
             _logger = logger;
         }
 
-        public IActionResult Main_Page()
+        public IActionResult Index()
+        {
+            return View();
+        }
+
+        public IActionResult Privacy()
         {
             return View();
         }
