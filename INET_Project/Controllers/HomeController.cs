@@ -23,6 +23,10 @@ namespace INET_Project.Controllers
         {
             _logger = logger;
         }
+        public IActionResult Cart()
+        {
+            return View("Cart");
+        }
 
         public IActionResult Index()
         {
