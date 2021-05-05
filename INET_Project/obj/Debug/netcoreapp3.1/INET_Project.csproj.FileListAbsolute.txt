@@ -217,3 +217,7 @@ C:\Users\pleka\Desktop\InternetShop\InternetShop\INET_Project\obj\Debug\netcorea
 C:\Users\pleka\Desktop\InternetShop\InternetShop\INET_Project\obj\Debug\netcoreapp3.1\INET_Project.pdb
 C:\Users\pleka\Desktop\InternetShop\InternetShop\INET_Project\obj\Debug\netcoreapp3.1\INET_Project.genruntimeconfig.cache
 C:\Users\pleka\Desktop\InternetShop\InternetShop\INET_Project\obj\Debug\netcoreapp3.1\Razor\Views\Home\Main_Page.cshtml.g.cs
+C:\Users\pleka\Desktop\InternetShop\InternetShop\INET_Project\bin\Debug\netcoreapp3.1\libman.json
+C:\Users\pleka\Desktop\InternetShop\InternetShop\INET_Project\obj\Debug\netcoreapp3.1\Razor\Views\Home\Contact.cshtml.g.cs
+C:\Users\pleka\Desktop\InternetShop\InternetShop\INET_Project\obj\Debug\netcoreapp3.1\Razor\Views\Home\Privacy.cshtml.g.cs
+C:\Users\pleka\Desktop\InternetShop\InternetShop\INET_Project\obj\Debug\netcoreapp3.1\Razor\Views\Home\About.cshtml.g.cs

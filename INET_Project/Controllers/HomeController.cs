@@ -26,12 +26,22 @@ namespace INET_Project.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            return View("Main_Page");
+        }
+
+        public IActionResult About()
+        {
+            return View("About");
+        }
+        
+        public IActionResult Contact()
+        {
+            return View("Contact");
         }
 
         public IActionResult Privacy()
         {
-            return View();
+            return View("Privacy");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
