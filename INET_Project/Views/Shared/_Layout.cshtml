@@ -13,23 +13,23 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-light border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"><i class="fa fa-home"></i> INET</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Contact"><i class="fa fa-phone-square"></i> Kontakt</a>
+                    <ul class="nav navbar-nav flex-grow-1">
+                        <li class="nav-item active">
+                            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"><i class="fa fa-home fa-lg"></i> INET</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="About"><i class="fa fa-users"></i> O nas</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Contact"><i class="fa fa-phone-square fa-lg"></i> Kontakt</a>
                         </li>
-                        <li class="nav-item ml-auto">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Cart"><i class="fa fa-shopping-cart"></i> Koszyk</a>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="About"><i class="fa fa-users fa-lg"></i> O nas</a>
+                        </li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Cart"><i class="fa fa-shopping-cart fa-lg"></i> Koszyk</a>
                         </li>
                     </ul>
                 </div>
@@ -37,9 +37,7 @@
         </nav>
     </header>
     <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
+        @RenderBody()
     </div>
 
     <footer class="border-top footer text-muted">
