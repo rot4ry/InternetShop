@@ -1,0 +1,11 @@
+﻿.carousel-inner {
+    width: auto;
+    height: auto;
+}
+
+.carousel-content {
+    color: black;
+    display: flex;
+    text-align: center;
+}
+
