@@ -4,6 +4,8 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<section id="CarouselSection"></section>
+
 <div id="themeSlider" class="carousel slide" data-ride="carousel">
     <ol class="carousel-indicators">
         <li data-target="#themeSlider" data-slide-to="0" class="active"></li>
@@ -15,21 +17,18 @@
             <div class="imgOverlay"></div>
             <img style="height:320px;width:100%" src="~/images/sample_images_1.jpg" class="img-responsive">
             <div class="carousel-caption">
-
             </div>
         </div>
         <div class="item">
             <div class="imgOverlay"></div>
             <img style="height:320px;width:100%" src="~/images/sample_images_2.jpg" class="img-responsive">
             <div class="carousel-caption">
-
             </div>
         </div>
         <div class="item">
             <div class="imgOverlay"></div>
             <img style="height:320px;width:100%" src="~/images/sample_images_3.jpg" class="img-responsive">
             <div class="carousel-caption">
-
             </div>
         </div>
     </div>
@@ -41,7 +40,22 @@
         <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
         <span class="sr-only">Next</span>
     </a>
+</div>
 
+<section id="SearchingSection"></section>
+<hr style="height:2px;border-width:0;color:gray;background-color:gray">
+
+<div>
+    <h2>Wyszukaj produkt/kategorię</h2>
+</div>
+
+<div class="input-group">
+    <div class="form-outline">
+        <input type="search" placeholder="Czego szukasz?" id="form1" class="form-control" />
+        <button type="button" class="btn btn-dark">
+            <i class="fas fa-search"> Wyszukaj</i>
+        </button>
+    </div>
 </div>
 
 @section Scripts {
