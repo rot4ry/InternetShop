@@ -222,3 +222,5 @@ C:\Users\pleka\Desktop\InternetShop\InternetShop\INET_Project\obj\Debug\netcorea
 C:\Users\pleka\Desktop\InternetShop\InternetShop\INET_Project\obj\Debug\netcoreapp3.1\INET_Project.pdb
 C:\Users\pleka\Desktop\InternetShop\InternetShop\INET_Project\obj\Debug\netcoreapp3.1\INET_Project.genruntimeconfig.cache
 C:\Users\pleka\Desktop\InternetShop\InternetShop\INET_Project\obj\Debug\netcoreapp3.1\INET_Project.csprojAssemblyReference.cache
+C:\Users\pleka\Desktop\InternetShop\InternetShop\INET_Project\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_AdminLayout.cshtml.g.cs
+C:\Users\pleka\Desktop\InternetShop\InternetShop\INET_Project\obj\Debug\netcoreapp3.1\Razor\Views\Admin\Dashboard.cshtml.g.cs
