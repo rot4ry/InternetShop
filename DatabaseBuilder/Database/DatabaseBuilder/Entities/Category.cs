@@ -7,6 +7,8 @@
     {
         public int CategoryID { get; set; } //Primary Key
         public string CategoryName { get; set; }
-        public string CategoryDescription { get; set; }   //Not nullable!
+        
+        #nullable enable
+        public string? CategoryDescription { get; set; }
     }
 }

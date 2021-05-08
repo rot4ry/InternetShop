@@ -17,7 +17,8 @@ namespace DatabaseBuilder.Entities
 
 
         //Image type -> byte[] ?
-        public byte[] Invoice { get; set; }
-        public byte[] InvoiceCopy { get; set; }
+        #nullable enable        
+        public byte[]? Invoice { get; set; }
+        public byte[]? InvoiceCopy { get; set; }
     }
 }

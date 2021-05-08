@@ -7,6 +7,8 @@
     {
         public int ParameterID { get; set; }    //Primary Key  
         public string ParameterName { get; set; }
-        public string ParameterDescription { get; set; }    //Not nullable!
+
+        #nullable enable
+        public string? ParameterDescription { get; set; }  
     }
 }
