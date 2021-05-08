@@ -134,6 +134,15 @@ namespace DatabaseBuilder
 
 
             //Parameter
+            mb.Entity<Parameter>().HasKey(x => x.ParameterID);
+            mb.Entity<Parameter>().Property(x => x.ParameterID)
+                .UseIdentityColumn(1, 1).HasColumnType("int").IsRequired();
+
+            mb.Entity<Parameter>().Property(x => x.ParameterName)
+                .HasColumnType("varchar(64)").IsRequired();
+
+            mb.Entity<Parameter>().Property(x => x.ParameterDescription)
+                .HasColumnType("text");
 
             //Product
 
@@ -142,7 +151,6 @@ namespace DatabaseBuilder
             //ProductPicture
 
             //VAT
-
         }
     }
 }
