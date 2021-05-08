@@ -89,8 +89,49 @@ namespace DatabaseBuilder
                 .HasColumnType("varchar(32)").IsRequired();
 
             //Order
+            mb.Entity<Order>().HasKey(x => x.OrderID);
+            mb.Entity<Order>().Property(x => x.OrderID)
+                .UseIdentityColumn(1, 1).HasColumnType("int").IsRequired();
+
+            mb.Entity<Order>().Property(x => x.ClientID)
+                .HasColumnType("int").IsRequired();
+
+            mb.Entity<Order>().Property(x => x.ReceivedDate)
+                .HasColumnType("datetime").IsRequired();
+
+            mb.Entity<Order>().Property(x => x.PreparedDate)
+                .HasColumnType("date");
+
+            mb.Entity<Order>().Property(x => x.SentDate)
+                .HasColumnType("date");
+
+            mb.Entity<Order>().Property(x => x.SentToAddress)
+                .HasColumnType("text").IsRequired();
+
+            mb.Entity<Order>().Property(x => x.IsInvoiced)
+                .HasColumnType("bit").IsRequired();
+
+            mb.Entity<Order>().Property(x => x.Invoice)
+                .HasColumnType("varbinary(max)");
+
+            mb.Entity<Order>().Property(x => x.InvoiceCopy)
+                .HasColumnType("varbinary(max)");
 
             //OrderDetail
+            mb.Entity<OrderDetail>().HasKey("OrderID", "ProductID");
+
+            mb.Entity<OrderDetail>().Property(x => x.OrderID)
+                .HasColumnType("int").IsRequired();
+
+            mb.Entity<OrderDetail>().Property(x => x.ProductID)
+                .HasColumnType("int").IsRequired();
+
+            mb.Entity<OrderDetail>().Property(x => x.Quantity)
+                .HasColumnType("int").IsRequired();
+
+            mb.Entity<OrderDetail>().Property(x => x.UnitPrice)
+                .HasColumnType("money").IsRequired();
+
 
             //Parameter
 
