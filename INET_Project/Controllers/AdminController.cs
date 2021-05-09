@@ -58,19 +58,19 @@ namespace INET_Project.Controllers
         }
         public async Task ProductImage(IFormFile image)
         {
-            if (image != null)
+            if (image == null)
             {
-                var name = $"{Guid.NewGuid()}_{image.FileName}";
-                HttpContext.Session.SetString("ImageName", name);
-
-                var toFolder = Path.Combine(_environment.WebRootPath, "images");
-                var filePath = Path.Combine(toFolder, name);
-
-                using var fileStream = new FileStream(filePath, FileMode.Create);
-                await image.CopyToAsync(fileStream);
+                HttpContext.Session.SetString("ImageName", "");
+                return;
             }
-            HttpContext.Session.SetString("ImageName", "");
-            return;
+            var name = $"{Guid.NewGuid()}_{image.FileName}";
+            HttpContext.Session.SetString("ImageName", name);
+
+            var toFolder = Path.Combine(_environment.WebRootPath, "images");
+            var filePath = Path.Combine(toFolder, name);
+
+            using var fileStream = new FileStream(filePath, FileMode.Create);
+            await image.CopyToAsync(fileStream);
         }
     }
 }

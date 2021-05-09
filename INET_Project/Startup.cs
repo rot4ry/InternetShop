@@ -23,6 +23,7 @@ namespace INET_Project
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddDistributedMemoryCache();
             services.AddSession(options =>
             {
                 options.IdleTimeout = TimeSpan.FromSeconds(10);
@@ -45,6 +46,8 @@ namespace INET_Project
             app.UseStaticFiles();
 
             app.UseRouting();
+
+            app.UseSession();
 
             app.UseAuthorization();
 
