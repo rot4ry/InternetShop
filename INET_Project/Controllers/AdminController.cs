@@ -26,6 +26,11 @@ namespace INET_Project.Controllers
             }
             return View();
         }
-        
+        [HttpGet]
+        public IActionResult Products()
+        {
+            ViewBag.Products = _demoProducts;
+            return View();
+        }
     }
 }
