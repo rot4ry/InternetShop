@@ -225,3 +225,4 @@ C:\Users\pleka\Desktop\InternetShop\InternetShop\INET_Project\obj\Debug\netcorea
 C:\Users\pleka\Desktop\InternetShop\InternetShop\INET_Project\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_AdminLayout.cshtml.g.cs
 C:\Users\pleka\Desktop\InternetShop\InternetShop\INET_Project\obj\Debug\netcoreapp3.1\Razor\Views\Admin\Dashboard.cshtml.g.cs
 C:\Users\pleka\Desktop\InternetShop\InternetShop\INET_Project\obj\Debug\netcoreapp3.1\Razor\Views\Admin\Products.cshtml.g.cs
+C:\Users\pleka\Desktop\InternetShop\InternetShop\INET_Project\obj\Debug\netcoreapp3.1\Razor\Views\Admin\Categories.cshtml.g.cs

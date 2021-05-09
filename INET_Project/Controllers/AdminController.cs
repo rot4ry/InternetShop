@@ -10,6 +10,7 @@ namespace INET_Project.Controllers
     public class AdminController : Controller
     {
         private static List<DemoProduct> _demoProducts = new List<DemoProduct>();
+        [HttpGet]
         public IActionResult Dashboard()
         {
             ViewBag.Products = _demoProducts;
@@ -25,5 +26,6 @@ namespace INET_Project.Controllers
             }
             return View();
         }
+        
     }
 }
