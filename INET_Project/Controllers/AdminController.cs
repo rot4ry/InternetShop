@@ -32,5 +32,15 @@ namespace INET_Project.Controllers
             ViewBag.Products = _demoProducts;
             return View();
         }
+        [HttpGet]
+        public IActionResult Orders()
+        {
+            return View();
+        }
+        [HttpGet]
+        public IActionResult Categories()
+        {
+            return View();
+        }
     }
 }
