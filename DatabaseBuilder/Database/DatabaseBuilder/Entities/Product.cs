@@ -9,6 +9,8 @@
         public int CategoryID { get; set; } //Foreign Key
         public string ProductName { get; set; }
         public string Brand { get; set; }
+        public decimal UnitPrice { get; set; }
+        public int QtAvailable { get; set; }
         public string ProducerCode { get; set; }
         
         #nullable enable
