@@ -132,7 +132,6 @@ namespace DatabaseBuilder
             mb.Entity<OrderDetail>().Property(x => x.UnitPrice)
                 .HasColumnType("money").IsRequired();
 
-
             //Parameter
             mb.Entity<Parameter>().HasKey(x => x.ParameterID);
             mb.Entity<Parameter>().Property(x => x.ParameterID)
@@ -145,12 +144,68 @@ namespace DatabaseBuilder
                 .HasColumnType("text");
 
             //Product
+            mb.Entity<Product>().HasKey(x => x.ProductID);
+            mb.Entity<Product>().Property(x => x.ProductID)
+                .UseIdentityColumn(1, 1).HasColumnType("int").IsRequired();
+
+            mb.Entity<Product>().Property(x => x.CategoryID)
+                .HasColumnType("int").IsRequired();
+
+            mb.Entity<Product>().Property(x => x.ProductName)
+                .HasColumnType("text").IsRequired();
+
+            mb.Entity<Product>().Property(x => x.Brand)
+                .HasColumnType("varchar(64)").IsRequired();
+
+            mb.Entity<Product>().Property(x => x.UnitPrice)
+                .HasColumnType("money").IsRequired();
+
+            mb.Entity<Product>().Property(x => x.QtAvailable)
+                .HasColumnType("int").IsRequired();
+
+            mb.Entity<Product>().Property(x => x.ProductDescription)
+                .HasColumnType("text");
+
+            mb.Entity<Product>().Property(x => x.ProducerCode)
+                .HasColumnType("varchar(255)").IsRequired();
 
             //ProductParameter
+            mb.Entity<ProductParameter>().HasKey("ProductID", "ParameterID");
+            mb.Entity<ProductParameter>().Property(x => x.ProductID)
+                .HasColumnType("int").IsRequired();
+            mb.Entity<ProductParameter>().Property(x => x.ParameterID)
+                .HasColumnType("int").IsRequired();
+
+            mb.Entity<ProductParameter>().Property(x => x.ParameterDecimal)
+                .HasColumnType("decimal(3,2)");
+
+            mb.Entity<ProductParameter>().Property(x => x.ParameterValueInt)
+                .HasColumnType("int");
+
+            mb.Entity<ProductParameter>().Property(x => x.ParameterValueText)
+                .HasColumnType("text");
 
             //ProductPicture
+            mb.Entity<ProductPicture>().HasKey(x => x.PictureID);
+            mb.Entity<ProductPicture>().Property(x => x.PictureID)
+                .UseIdentityColumn(1, 1).HasColumnType("int").IsRequired();
+
+            mb.Entity<ProductPicture>().Property(x => x.ProductID)
+                .HasColumnType("int").IsRequired();
+
+            mb.Entity<ProductPicture>().Property(x => x.Picture)
+                .HasColumnType("varbinary(max)").IsRequired();
 
             //VAT
+            mb.Entity<VAT>().HasKey(x => x.DateSince);
+            mb.Entity<VAT>().Property(x => x.DateSince)
+                .HasColumnType("datetime").IsRequired();
+
+            mb.Entity<VAT>().Property(x => x.DateChanged)
+                .HasColumnType("datetime");
+
+            mb.Entity<VAT>().Property(x => x.Value)
+                .HasColumnType("decimal(3,2)").IsRequired();
         }
     }
 }
