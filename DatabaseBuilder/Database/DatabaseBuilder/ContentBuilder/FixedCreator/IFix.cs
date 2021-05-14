@@ -8,6 +8,6 @@ namespace DatabaseBuilder.FixedCreator
 {
     interface IFix
     {
-        public bool SaveToDatabaseSequentially();
+        public void SaveToDatabaseSequentially();
     }
 }
