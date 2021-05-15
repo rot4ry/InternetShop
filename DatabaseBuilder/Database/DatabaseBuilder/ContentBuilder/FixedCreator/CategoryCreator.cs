@@ -53,7 +53,7 @@ namespace DatabaseBuilder.FixedCreator
             if (this.CreateCategories())
                 Console.WriteLine("Categories were successfully added to the database!");
             else
-                Console.WriteLine("Saving categorie occured with some kind of a problem.\n" +
+                Console.WriteLine("Saving Categories occured with some kind of a problem.\n" +
                                 "Check the database for details.");
         }
     }
