@@ -15,36 +15,55 @@ namespace DatabaseBuilder.ContentBuilder
         public Seeder(string connectionString, int products)
         {
             ConnectionString = connectionString;
+            ProductsQt = products;
         }
 
         public void AddProducts()
         {
-
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine("---------\nCreating Products:");
+            ProductCreator productCreator = new ProductCreator(ConnectionString);
+            for(int i=0; i<=ProductsQt; i++)
+            {
+                productCreator.SaveToDatabase();
+            }
+            Console.ResetColor();
         }
 
         public void AddClients()
         {
+            Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("---------\nCreating Clients:");
-            ClientCreator clientCreator = new ClientCreator(ConnectionString);
+            IFix clientCreator = new ClientCreator(ConnectionString);
             clientCreator.SaveToDatabaseSequentially();
+            Console.ResetColor();
         }
+
         public void AddCategories()
         {
+            Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("---------\nCreating Categories:");
-            CategoryCreator categoryCreator = new CategoryCreator(ConnectionString);
+            IFix categoryCreator = new CategoryCreator(ConnectionString);
             categoryCreator.SaveToDatabaseSequentially();
+            Console.ResetColor();
         }
+
         public void AddParameters()
         {
+            Console.ForegroundColor = ConsoleColor.Magenta;
             Console.WriteLine("---------\nCreating Parameters:");
-            ParameterCreator parameterCreator = new ParameterCreator(ConnectionString);
+            IFix parameterCreator = new ParameterCreator(ConnectionString);
             parameterCreator.SaveToDatabaseSequentially();
+            Console.ResetColor();
         }
+
         public void AddVat()
         {
+            Console.ForegroundColor = ConsoleColor.Gray;
             Console.WriteLine("---------\nCreating VAT:");
-            VatCreator vatCreator = new VatCreator(ConnectionString);
+            IFix vatCreator = new VatCreator(ConnectionString);
             vatCreator.SaveToDatabaseSequentially();
+            Console.ResetColor();
         }
     }
 }
