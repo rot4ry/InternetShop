@@ -1,20 +1,28 @@
-﻿using System;
+﻿using DatabaseBuilder.Entities;
 
 namespace DatabaseBuilder.RandomCreator
 {
     /// <summary>
     /// Randomizes Product data and saves it in the DB
     /// </summary>
-    public class ProductCreator : IRandomize
+    public class ProductCreator : IRandomize<Product>
     {
-        public void Randomize()
+        private MyContext __Context { get; set; }
+        public ProductCreator(string connectionString)
         {
-            throw new NotImplementedException();
+            __Context = new MyContext(connectionString);
+            __Context.Database.EnsureCreated();
+        }
+
+        public Product Randomize()
+        {
+
+            return new Product();
         }
 
         public bool SaveToDatabase()
         {
-            throw new NotImplementedException();
+            return true;
         }
     }
 }
