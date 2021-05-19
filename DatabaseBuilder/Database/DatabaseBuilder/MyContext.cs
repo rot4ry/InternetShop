@@ -144,7 +144,6 @@ namespace DatabaseBuilder
                 .HasColumnType("text");
 
             //Product
-            mb.Entity<Product>().HasAnnotation("SET IDENTITY_INSERT", "ON");
             mb.Entity<Product>().HasKey(x => x.ProductID);
             mb.Entity<Product>().Property(x => x.ProductID)
                 .HasColumnType("int").IsRequired();
