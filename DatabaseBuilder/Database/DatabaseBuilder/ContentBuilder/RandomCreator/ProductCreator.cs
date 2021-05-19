@@ -82,9 +82,9 @@ namespace DatabaseBuilder.RandomCreator
             if (!(__Context.SaveChanges() == 1))
             {
                 Console.WriteLine($"An error occured while trying to save a Product type into the DB\n" +
-                                $"Parameter ID = {product.ProductID}");
+                                $"Product ID = {product.ProductID}");
             }
-            else Console.WriteLine($"> Product {product.ProductID} saved., CAT{product.CategoryID}");
+            else Console.WriteLine($"> Product {product.ProductID} saved.");
 
             List<ProductParameter> productParameters = new List<ProductParameter>();
             switch (product.CategoryID)
@@ -177,7 +177,7 @@ namespace DatabaseBuilder.RandomCreator
                 {
                     Console.WriteLine($"An error occured while trying to save a ProductParameter type into the DB");
                 }
-                else Console.WriteLine($"> ProductParameter saved {pp.ParameterID}.");
+                else Console.WriteLine($"> ProductParameter {pp.ParameterID} saved.");
             }
 
             productParameters.Clear();
