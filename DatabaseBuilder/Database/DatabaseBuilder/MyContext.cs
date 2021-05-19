@@ -146,7 +146,7 @@ namespace DatabaseBuilder
             //Product
             mb.Entity<Product>().HasKey(x => x.ProductID);
             mb.Entity<Product>().Property(x => x.ProductID)
-                .UseIdentityColumn(1, 1).HasColumnType("int").IsRequired();
+                .HasColumnType("int").IsRequired();
 
             mb.Entity<Product>().Property(x => x.CategoryID)
                 .HasColumnType("int").IsRequired();
