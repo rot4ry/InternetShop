@@ -144,6 +144,7 @@ namespace DatabaseBuilder
                 .HasColumnType("text");
 
             //Product
+            mb.Entity<Product>().HasAnnotation("SET IDENTITY_INSERT", "ON");
             mb.Entity<Product>().HasKey(x => x.ProductID);
             mb.Entity<Product>().Property(x => x.ProductID)
                 .HasColumnType("int").IsRequired();
@@ -177,7 +178,7 @@ namespace DatabaseBuilder
                 .HasColumnType("int").IsRequired();
 
             mb.Entity<ProductParameter>().Property(x => x.ParameterDecimal)
-                .HasColumnType("decimal(3,2)");
+                .HasColumnType("decimal(5,2)");
 
             mb.Entity<ProductParameter>().Property(x => x.ParameterValueInt)
                 .HasColumnType("int");
