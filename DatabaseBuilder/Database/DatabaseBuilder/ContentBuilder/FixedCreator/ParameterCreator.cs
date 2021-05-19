@@ -47,10 +47,8 @@ namespace DatabaseBuilder.FixedCreator
                                     $"Parameter ID = {parameter.ParameterID}");
                     return false;
                 }
-                else
-                {
-                    Console.WriteLine($"> Parameter {parameter.ParameterID} saved.");
-                }
+                else Console.WriteLine($"> Parameter {parameter.ParameterID} saved.");
+                
             }
             return true;
 

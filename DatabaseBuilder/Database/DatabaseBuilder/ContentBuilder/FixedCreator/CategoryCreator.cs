@@ -8,7 +8,7 @@ namespace DatabaseBuilder.FixedCreator
     /// Builds a fixed table of type Category
     /// </summary>
     public class CategoryCreator : IFix
-    {
+    { 
         private MyContext __Context { get; set; }
         private List<Category> Categories = new List<Category>()
         {
@@ -45,10 +45,7 @@ namespace DatabaseBuilder.FixedCreator
                                     $"Category ID = {category.CategoryID}");
                     return false;
                 }
-                else
-                {
-                    Console.WriteLine($"> Category {category.CategoryID} saved.");
-                }
+                else Console.WriteLine($"> Category {category.CategoryID} saved.");
             }
             return true;
         }

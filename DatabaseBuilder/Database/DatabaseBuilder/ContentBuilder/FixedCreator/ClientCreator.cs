@@ -35,10 +35,8 @@ namespace DatabaseBuilder.FixedCreator
                                     $"Client ID = {client.ClientID}");
                     return false;
                 }
-                else
-                {
-                    Console.WriteLine($"> Client {client.ClientID} saved.");
-                }
+                else Console.WriteLine($"> Client {client.ClientID} saved.");
+                
             }
             return true;
         }
