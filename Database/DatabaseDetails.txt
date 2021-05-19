@@ -1,0 +1,48 @@
+This file will contain descriptions of some of the database fields 
+in order to make their existence clear. 
+
+--------------
+=== Client ===
+--------------
+Client.IsConstClient 	-> defines, wheteher the client can get a discount while shopping -> True/False value.
+
+
+--------------
+=== Order ===
+--------------
+Order.SentToAddress 	-> stores serialized Client's address 
+Order.IsInvoiced 	-> defines if an Invoice should be included
+Order.Invoice		-> stores an image/pdf Invoice
+Order.InvoiceCopy	-> stores an image/pdf Invoice copy
+
+------------------------       ------------------
+=== ProductParameter ===  and  === Parameter ===
+------------------------       ------------------     
+
+Parameter-ProductParameter-Product construction is used
+to store multiple properties of a product. 
+E.g. 
+A CPU has Parameters like "Timing" and "Amount of threads" 
+that should be described in the database.
+A RAM Memory also has "Timing" but doesn't include threads.
+Thus, we create a set of attribute names in Parameters table, 
+then, as we add products we can add a value to the given Parameter 
+that belongs to the given Product. Using this, two products that 
+include the same parameter might have two completely different values
+regarding the parameter.
+
+--To think about--
+Product table could also contain "Performance" column that would store 
+all of the Parameters marked with ProductID, serialized into a single 
+TEXT (JSON?) in order to improve the performance of the database.
+This will require some triggers on Insert and Update tho.
+----------------------------------
+
+-----------
+=== VAT ===
+-----------
+The table stores the tax value, that should be included
+during construction of an order. 
+It's sorted using the dates when given VAT value was set by the law.
+
+Version 1.0 Complete
