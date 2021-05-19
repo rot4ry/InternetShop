@@ -23,9 +23,11 @@ namespace DatabaseBuilder.ContentBuilder
             Console.ForegroundColor = ConsoleColor.Blue;
             Console.WriteLine("---------\nCreating Products:");
             ProductCreator productCreator = new ProductCreator(ConnectionString);
-            for(int i=0; i<=ProductsQt; i++)
+            productCreator.Initialize();
+
+            for(int i=1; i<=ProductsQt; i++)
             {
-                productCreator.SaveToDatabase();
+                productCreator.CreateProduct();
             }
             Console.ResetColor();
         }
