@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 using DatabaseBuilder.ContentBuilder;
-//C:\Users\rot4ry\Desktop\connString.txt
+
 namespace DatabaseBuilder
 {
     public class Program
