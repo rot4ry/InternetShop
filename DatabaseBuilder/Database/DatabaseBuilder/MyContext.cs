@@ -193,8 +193,8 @@ namespace DatabaseBuilder
             mb.Entity<ProductPicture>().Property(x => x.ProductID)
                 .HasColumnType("int").IsRequired();
 
-            mb.Entity<ProductPicture>().Property(x => x.Picture)
-                .HasColumnType("varbinary(max)").IsRequired();
+            mb.Entity<ProductPicture>().Property(x => x.PicturePath)
+                .HasColumnType("text").IsRequired();
 
             //VAT
             mb.Entity<VAT>().HasKey(x => x.DateSince);
