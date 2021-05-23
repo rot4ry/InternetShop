@@ -19,7 +19,7 @@ namespace DatabaseBuilder
             Seed(connectionString, productQt);
             
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("Building the database finished!\nPress any key to quit.");
+            Console.WriteLine("Building the database finished!\nPress ENTER to quit.");
             Console.ResetColor();
             Console.ReadLine();
         }

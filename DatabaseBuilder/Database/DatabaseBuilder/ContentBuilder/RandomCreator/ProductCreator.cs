@@ -62,18 +62,17 @@ namespace DatabaseBuilder.RandomCreator
         public void CreateProduct()
         {
             int productID = GetTopProductID() + 1;
-
-            Category category = GetCategory();
+            int categoryID = GetCategory();
             string brand = GetBrand();
-            string productName = GetName((category.CategoryID)%14, brand);
+            string productName = GetName(categoryID, brand);
 
             Product product = new Product()
             {
-                CategoryID = category.CategoryID,
+                CategoryID = categoryID,
                 ProductName = productName,
                 Brand = brand,
                 UnitPrice = GetPrice(),
-                QtAvailable = GetRandom(3, 100),
+                QtAvailable = GetRandom(0, 100),
                 ProducerCode = GetCode(),
                 ProductDescription = GetDescription()
             };
@@ -87,17 +86,19 @@ namespace DatabaseBuilder.RandomCreator
             else Console.WriteLine($"> Product {product.ProductID} saved.");
 
             List<ProductParameter> productParameters = new List<ProductParameter>();
+            ProductPicture productPicture = new ProductPicture();
+
             switch (product.CategoryID)
             {
-                case 1:
+                case 1: //CPU
                     productParameters.Add(new ProductParameter() { ParameterID = 1, ProductID = productID, ParameterDecimal = GetRandomDecimal(10), ParameterValueText="GHz" });
                     productParameters.Add(new ProductParameter() { ParameterID = 2, ProductID = productID, ParameterValueText = $"Socket {GetRandom(100, 2000)}" });
                     productParameters.Add(new ProductParameter() { ParameterID = 4, ProductID = productID, ParameterValueInt = GetRandom(4, 20)});
                     productParameters.Add(new ProductParameter() { ParameterID = 5, ProductID = productID, ParameterValueInt = GetRandom(6, 12) });
                     productParameters.Add(new ProductParameter() { ParameterID = 6, ProductID = productID, ParameterValueInt = GetRandom(100, 140), ParameterValueText="Watt" });
+                    productPicture = new ProductPicture() { ProductID = productID, PicturePath = "Resources/cpu.jpg" };
                     break;
-
-                case 2:
+                case 2: //GPU
                     productParameters.Add(new ProductParameter() { ParameterID = 1, ProductID = productID, ParameterDecimal = GetRandomDecimal(10), ParameterValueText = "MHz" });  //taktowanie
                     productParameters.Add(new ProductParameter() { ParameterID = 3, ProductID = productID, ParameterDecimal = GetRandom(600, 900), ParameterValueText = "MB" });    //ram
                     productParameters.Add(new ProductParameter() { ParameterID = 6, ProductID = productID, ParameterValueInt = GetRandom(300, 360), ParameterValueText = "Watt" });
@@ -105,70 +106,90 @@ namespace DatabaseBuilder.RandomCreator
                     productParameters.Add(new ProductParameter() { ParameterID = 10, ProductID = productID, ParameterValueInt = GetRandom(300, 360), ParameterValueText = "mm" });  //dł
                     productParameters.Add(new ProductParameter() { ParameterID = 11, ProductID = productID, ParameterValueInt = GetRandom(100, 160), ParameterValueText = "mm" });  //szer
                     productParameters.Add(new ProductParameter() { ParameterID = 12, ProductID = productID, ParameterValueInt = GetRandom(10, 30), ParameterValueText = "mm" });    //wys
+                    productPicture = new ProductPicture() { ProductID = productID, PicturePath = "Resources/gpu.jpg" };
                     break;
-                case 3:
+                case 3: //MOTHERBOARD
                     productParameters.Add(new ProductParameter() { ParameterID = 2, ProductID = productID, ParameterValueText = $"Socket {GetRandom(100, 2000)}" });
                     productParameters.Add(new ProductParameter() { ParameterID = 6, ProductID = productID, ParameterValueInt = GetRandom(100, 140), ParameterValueText = "Watt" });
                     productParameters.Add(new ProductParameter() { ParameterID = 10, ProductID = productID, ParameterValueInt = GetRandom(250, 300), ParameterValueText = "mm" });  //dł
                     productParameters.Add(new ProductParameter() { ParameterID = 11, ProductID = productID, ParameterValueInt = GetRandom(250, 300), ParameterValueText = "mm" });  //szer
                     productParameters.Add(new ProductParameter() { ParameterID = 12, ProductID = productID, ParameterValueInt = GetRandom(10, 35), ParameterValueText = "mm" });    //wys
+                    productPicture = new ProductPicture() { ProductID = productID, PicturePath = "Resources/motherboard.jpg" };
                     break;
-                case 4:
+                case 4: //RAM
                     productParameters.Add(new ProductParameter() { ParameterID = 1, ProductID = productID, ParameterDecimal = GetRandomDecimal(10), ParameterValueText = "MHz" });  //taktowanie
                     productParameters.Add(new ProductParameter() { ParameterID = 3, ProductID = productID, ParameterDecimal = GetRandom(600, 900), ParameterValueText = "MB" });    //ram       
                     productParameters.Add(new ProductParameter() { ParameterID = 8, ProductID = productID, ParameterValueInt = GetRandom(100, 140), ParameterValueText = "DDR4" }); //mem type
+                    productPicture = new ProductPicture() { ProductID = productID, PicturePath = "Resources/ram.jpg" };
                     break;
-                case 5:
+                case 5: //HDD
                     productParameters.Add(new ProductParameter() { ParameterID = 7, ProductID = productID, ParameterValueInt = GetRandom(512, 4096), ParameterValueText = "GB" });  //dł
                     productParameters.Add(new ProductParameter() { ParameterID = 10, ProductID = productID, ParameterValueInt = GetRandom(190, 220), ParameterValueText = "mm" });  //dł
                     productParameters.Add(new ProductParameter() { ParameterID = 11, ProductID = productID, ParameterValueInt = GetRandom(100, 150), ParameterValueText = "mm" });  //szer
                     productParameters.Add(new ProductParameter() { ParameterID = 12, ProductID = productID, ParameterValueInt = GetRandom(10, 30), ParameterValueText = "mm" });    //wys
+                    productPicture = new ProductPicture() { ProductID = productID, PicturePath = "Resources/hdd.jpg" };
                     break;
-                case 6:
+                case 6: //SSD
                     productParameters.Add(new ProductParameter() { ParameterID = 7, ProductID = productID, ParameterValueInt = GetRandom(512, 1024), ParameterValueText = "GB" });  //dł
                     productParameters.Add(new ProductParameter() { ParameterID = 10, ProductID = productID, ParameterValueInt = GetRandom(190, 220), ParameterValueText = "mm" });  //dł
                     productParameters.Add(new ProductParameter() { ParameterID = 11, ProductID = productID, ParameterValueInt = GetRandom(100, 150), ParameterValueText = "mm" });  //szer
                     productParameters.Add(new ProductParameter() { ParameterID = 12, ProductID = productID, ParameterValueInt = GetRandom(10, 30), ParameterValueText = "mm" });    //wy
+                    productPicture = new ProductPicture() { ProductID = productID, PicturePath = "Resources/ssd.jpg" };
                     break;
-                case 7:
+                case 7: //COOLING
                     productParameters.Add(new ProductParameter() { ParameterID = 9, ProductID = productID, ParameterValueText = "4-pin PWM" });                                //slot
+                    productPicture = new ProductPicture() { ProductID = productID, PicturePath = "Resources/cooling.jpg" };
                     break;
-                case 8:
+                case 8: //POWER SUPPLY
                     productParameters.Add(new ProductParameter() { ParameterID = 10, ProductID = productID, ParameterValueInt = GetRandom(200, 240), ParameterValueText = "mm" });  //dł
                     productParameters.Add(new ProductParameter() { ParameterID = 11, ProductID = productID, ParameterValueInt = GetRandom(200, 240), ParameterValueText = "mm" });  //szer
                     productParameters.Add(new ProductParameter() { ParameterID = 12, ProductID = productID, ParameterValueInt = GetRandom(100, 120), ParameterValueText = "mm" });    //wys
                     productParameters.Add(new ProductParameter() { ParameterID = 14, ProductID = productID, ParameterValueText = "80 PLUS GOLD" });  //cert
                     productParameters.Add(new ProductParameter() { ParameterID = 15, ProductID = productID, ParameterValueText = "89%" });  //wyd
                     productParameters.Add(new ProductParameter() { ParameterID = 16, ProductID = productID, ParameterValueInt= GetRandom(500, 750),ParameterValueText = "Watt" });     //max power
+                    productPicture = new ProductPicture() { ProductID = productID, PicturePath = "Resources/powersupply.jpg" };
                     break;
-                case 9:
+                case 9: //CASE
                     productParameters.Add(new ProductParameter() { ParameterID = 10, ProductID = productID, ParameterValueInt = GetRandom(300, 560), ParameterValueText = "mm" });  //dł
                     productParameters.Add(new ProductParameter() { ParameterID = 11, ProductID = productID, ParameterValueInt = GetRandom(200, 280), ParameterValueText = "mm" });  //szer
                     productParameters.Add(new ProductParameter() { ParameterID = 12, ProductID = productID, ParameterValueInt = GetRandom(300, 500), ParameterValueText = "mm" });    //wys
+                    productPicture = new ProductPicture() { ProductID = productID, PicturePath = "Resources/case.jpg" };
                     break;
-                case 10:
+                case 10:    //SPEAKERS
                     productParameters.Add(new ProductParameter() { ParameterID = 6, ProductID = productID, ParameterValueInt = GetRandom(10, 25), ParameterValueText = "Watt" });
                     productParameters.Add(new ProductParameter() { ParameterID = 10, ProductID = productID, ParameterValueInt = GetRandom(200, 250), ParameterValueText = "mm" });  //dł
                     productParameters.Add(new ProductParameter() { ParameterID = 11, ProductID = productID, ParameterValueInt = GetRandom(100, 250), ParameterValueText = "mm" });  //szer
                     productParameters.Add(new ProductParameter() { ParameterID = 12, ProductID = productID, ParameterValueInt = GetRandom(100, 250), ParameterValueText = "mm" });    //wys
                     productParameters.Add(new ProductParameter() { ParameterID = 13, ProductID = productID, ParameterValueText = "Black/Gray/Red" });   //color
+                    productPicture = new ProductPicture() { ProductID = productID, PicturePath = "Resources/speakers.jpg" };
                     break;
-                case 11:
+                case 11:    //HEADPHONES
                     productParameters.Add(new ProductParameter() { ParameterID = 13, ProductID = productID, ParameterValueText = "Black/Magenta" });   //color
+                    productPicture = new ProductPicture() { ProductID = productID, PicturePath = "Resources/headphones.jpg" };
                     break;
-                case 12:
+                case 12:    //MOUSE
                     productParameters.Add(new ProductParameter() { ParameterID = 13, ProductID = productID, ParameterValueText = "White/Black" });   //color
+                    productPicture = new ProductPicture() { ProductID = productID, PicturePath = "Resources/mouse.jpg" };
                     break;
-                case 13:
+                case 13:    //KEYBOARD
                     productParameters.Add(new ProductParameter() { ParameterID = 13, ProductID = productID, ParameterValueText = "Black/White/Dark Gray" });   //color
+                    productPicture = new ProductPicture() { ProductID = productID, PicturePath = "Resources/keyboard.jpg" };
                     break;
-                case 14:
+                case 14:    //MONITOR
                     productParameters.Add(new ProductParameter() { ParameterID = 10, ProductID = productID, ParameterValueInt = GetRandom(300, 360), ParameterValueText = "mm" });  //dł
                     productParameters.Add(new ProductParameter() { ParameterID = 11, ProductID = productID, ParameterValueInt = GetRandom(100, 160), ParameterValueText = "mm" });  //szer
                     productParameters.Add(new ProductParameter() { ParameterID = 12, ProductID = productID, ParameterValueInt = GetRandom(10, 30), ParameterValueText = "mm" });    //wys
                     productParameters.Add(new ProductParameter() { ParameterID = 13, ProductID = productID, ParameterValueText = "Black/White/Dark Gray" });
+                    productPicture = new ProductPicture() { ProductID = productID, PicturePath = "Resources/monitor.jpg" };
                     break;
             }
+
+            __Context.ProductPicture.Add(productPicture);
+            if (!(__Context.SaveChanges() == 1))
+            {
+                Console.WriteLine($"An error occured while trying to save a ProductPicture type into the DB");
+            }
+            else Console.WriteLine($"> ProductPicture saved.");
 
             foreach (ProductParameter pp in productParameters)
             {
@@ -186,12 +207,12 @@ namespace DatabaseBuilder.RandomCreator
 
         private string GetName(int catID, string brand)
         {
-            int border = CategoriesNamesAndModels[catID].GetLength(0);
+            int border = CategoriesNamesAndModels[catID - 1].GetLength(0);
 
             StringBuilder name = new StringBuilder();
             name.Append(brand).Append(" ")
-                .Append(CategoriesNamesAndModels[catID][GetRandom(1, border)]).Append(" ")
-                .Append(CategoriesNamesAndModels[catID][0]);
+                .Append(CategoriesNamesAndModels[catID - 1][GetRandom(1, border)]).Append(" ")
+                .Append(CategoriesNamesAndModels[catID - 1][0]);
 
             return name.ToString();
         }
@@ -211,10 +232,9 @@ namespace DatabaseBuilder.RandomCreator
                 return 0;
             }
         }
-        private Category GetCategory()
+        private int GetCategory()
         {
-            int catID = GetRandom(1, Categories.Count());
-            return Categories.Where(x => x.CategoryID == catID).First();
+            return GetRandom(1, Categories.Count());
         }
         private string GetDescription()
         {
@@ -235,6 +255,7 @@ namespace DatabaseBuilder.RandomCreator
 
         public void Initialize()
         {
+            //Call this method first!
             Categories = GetCategories();
             if(Categories is null)
             {
