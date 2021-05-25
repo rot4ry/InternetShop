@@ -56,21 +56,22 @@ namespace INET_Project.Controllers
         {
             return View();
         }
-        public async Task ProductImage(IFormFile image)
+        public async Task UploadFile(IFormFile file)
         {
-            if (image == null)
+            if (file == null)
             {
-                HttpContext.Session.SetString("ImageName", "");
+                HttpContext.Session.GetString("ImageName");
                 return;
             }
-            var name = $"{Guid.NewGuid()}_{image.FileName}";
-            HttpContext.Session.SetString("ImageName", name);
+
+            var uniqueName = $"{Guid.NewGuid()}_{file.FileName}";
+            HttpContext.Session.SetString("ImageName", uniqueName);
 
             var toFolder = Path.Combine(_environment.WebRootPath, "images");
-            var filePath = Path.Combine(toFolder, name);
+            var filePath = Path.Combine(toFolder, uniqueName);
 
             using var fileStream = new FileStream(filePath, FileMode.Create);
-            await image.CopyToAsync(fileStream);
+            await file.CopyToAsync(fileStream);
         }
     }
 }
