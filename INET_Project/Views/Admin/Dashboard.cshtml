@@ -74,7 +74,9 @@
                             @Html.DisplayFor(modelItem => item.Description)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.ProductImage)
+                            <div class="thumbnail">
+                                <img src="@Url.Content("/images/"+item.ProductImage)" alt="brak zdjęcia" class="img-thumbnail w-50" />
+                            </div>
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.Price)

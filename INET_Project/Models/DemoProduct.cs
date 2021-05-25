@@ -14,7 +14,6 @@ namespace INET_Project.Models
         [Required]
         [Display(Name = "Opis produktu")]
         public string Description { get; set; }
-        [Required]
         [Display(Name = "Zdjęcie produktu")]
         public string ProductImage { get; set; }
         [Required]
