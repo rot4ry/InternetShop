@@ -2,6 +2,9 @@
   "version": 3,
   "targets": {
     ".NETCoreApp,Version=v3.1": {
+      "dropzone/4.3.0": {
+        "type": "package"
+      },
       "Microsoft.AspNetCore.Html.Abstractions/2.2.0": {
         "type": "package",
         "dependencies": {
@@ -1801,6 +1804,25 @@
     }
   },
   "libraries": {
+    "dropzone/4.3.0": {
+      "sha512": "erwoK0GJ+gDfphtbBOjUkdoe/MBDbTVwd2DvvgNdULgJmZvOHrnbZQJH6GnbMXf9wa463sASZG102ZYbSw+e/Q==",
+      "type": "package",
+      "path": "dropzone/4.3.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "content/Scripts/dropzone/basic.css",
+        "content/Scripts/dropzone/basic.min.css",
+        "content/Scripts/dropzone/dropzone-amd-module.js",
+        "content/Scripts/dropzone/dropzone-amd-module.min.js",
+        "content/Scripts/dropzone/dropzone.css",
+        "content/Scripts/dropzone/dropzone.js",
+        "content/Scripts/dropzone/dropzone.min.css",
+        "content/Scripts/dropzone/dropzone.min.js",
+        "dropzone.4.3.0.nupkg.sha512",
+        "dropzone.nuspec"
+      ]
+    },
     "Microsoft.AspNetCore.Html.Abstractions/2.2.0": {
       "sha512": "Y4rs5aMEXY8G7wJo5S3EEt6ltqyOTr/qOeZzfn+hw/fuQj5GppGckMY5psGLETo1U9hcT5MmAhaT5xtusM1b5g==",
       "type": "package",
@@ -6049,7 +6071,8 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
-      "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 3.1.5"
+      "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 3.1.5",
+      "dropzone >= 4.3.0"
     ]
   },
   "packageFolders": {
@@ -6102,6 +6125,10 @@
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
             "target": "Package",
             "version": "[3.1.5, )"
+          },
+          "dropzone": {
+            "target": "Package",
+            "version": "[4.3.0, )"
           }
         },
         "imports": [
