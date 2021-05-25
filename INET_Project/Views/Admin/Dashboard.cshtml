@@ -22,9 +22,12 @@
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="ProductImage" class="control-label"></label>
-                <input asp-for="ProductImage" class="form-control" />
-                <span asp-validation-for="ProductImage" class="text-danger"></span>
+                <input hidden id="file" name="file" formenctype="multipart/form-data" />
+                <div class="dropzone dropzone-file-area" id="fileUpload">
+                    <div class="dz-default dz-message">
+                        <span>Przeciągnij albo dodaj zdjęcie produktu</span>
+                    </div>
+                </div>
             </div>
             <div class="form-group">
                 <label asp-for="Price" class="control-label"></label>
@@ -90,3 +93,30 @@
     }
 </div>
 
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        Dropzone.options.fileUpload = {
+            url: '/Admin/ProductImage',
+            paramName: "file",
+            autoProcessQueue: true,
+            maxFilesize: 30,
+            resizedWidth: 512,
+            addRemoveLinks: true,
+            maxFiles: 1,
+            acceptedFiles: "image/jpeg,image/png,image/gif",
+            init: function () {
+                var submitButton = document.querySelector("#submit-all");
+                var wrapperThis = this;
+
+                submitButton.addEventListener("click", function () {
+                    wrapperThis.processQueue();
+                });
+
+                this.on('sendimgmultiple', function (data, xhr, formData) {
+                    formData.append("sth", $("#submit-all").val());
+                });
+            }
+        };
+    </script>
+}

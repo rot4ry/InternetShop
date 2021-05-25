@@ -111,7 +111,6 @@ E:\Users\denn\source\repos\INET_Project\INET_Project\obj\Debug\netcoreapp3.1\Raz
 C:\Users\pleka\Desktop\InternetShop\InternetShop\INET_Project\bin\Debug\netcoreapp3.1\appsettings.Development.json
 C:\Users\pleka\Desktop\InternetShop\InternetShop\INET_Project\bin\Debug\netcoreapp3.1\appsettings.json
 C:\Users\pleka\Desktop\InternetShop\InternetShop\INET_Project\bin\Debug\netcoreapp3.1\libman.json
-C:\Users\pleka\Desktop\InternetShop\InternetShop\INET_Project\bin\Debug\netcoreapp3.1\Properties\launchSettings.json
 C:\Users\pleka\Desktop\InternetShop\InternetShop\INET_Project\bin\Debug\netcoreapp3.1\INET_Project.exe
 C:\Users\pleka\Desktop\InternetShop\InternetShop\INET_Project\bin\Debug\netcoreapp3.1\INET_Project.deps.json
 C:\Users\pleka\Desktop\InternetShop\InternetShop\INET_Project\bin\Debug\netcoreapp3.1\INET_Project.runtimeconfig.json
@@ -227,3 +226,4 @@ C:\Users\pleka\Desktop\InternetShop\InternetShop\INET_Project\obj\Debug\netcorea
 C:\Users\pleka\Desktop\InternetShop\InternetShop\INET_Project\obj\Debug\netcoreapp3.1\Razor\Views\Admin\Products.cshtml.g.cs
 C:\Users\pleka\Desktop\InternetShop\InternetShop\INET_Project\obj\Debug\netcoreapp3.1\Razor\Views\Admin\Categories.cshtml.g.cs
 C:\Users\pleka\Desktop\InternetShop\InternetShop\INET_Project\obj\Debug\netcoreapp3.1\Razor\Views\Admin\Orders.cshtml.g.cs
+C:\Users\pleka\Desktop\InternetShop\InternetShop\INET_Project\obj\Debug\netcoreapp3.1\scopedcss\bundle\INET_Project.styles.css

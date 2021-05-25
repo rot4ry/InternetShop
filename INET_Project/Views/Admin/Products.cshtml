@@ -54,3 +54,31 @@
         </div>
     }
 </div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        Dropzone.options.fileUpload = {
+            url: '/admin/ProductImage',
+            paramName: "file",
+            autoProcessQueue: true,
+            maxFilesize: 30,
+            resizedWidth: 512,
+            addRemoveLinks: true,
+            maxFiles: 1,
+            acceptedFiles: "image/jpeg,image/png,image/gif",
+            init: function () {
+                var submitButton = document.querySelector("#submit-all");
+                var wrapperThis = this;
+
+                submitButton.addEventListener("click", function () {
+                    wrapperThis.processQueue();
+                });
+
+                this.on('sendimgmultiple', function (data, xhr, formData) {
+                    formData.append("sth", $("#submit-all").val());
+                });
+            }
+        };
+    </script>
+}
