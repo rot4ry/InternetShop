@@ -17,7 +17,7 @@ namespace INET_Project.Models
 
     public class ReturnDetail
     {
-        [Display(Name = "Rodzaj zgłoszenia")]
+        [Display(Name = "Rodzaj zgłoszenia: ")]
         public TypeOfReport? TypeOfReport { get; set; }
         [Display(Name = "ID zamówienia")]
         public int OrderId { get; set; }
