@@ -1,6 +1,77 @@
-﻿
+﻿@model INET_Project.Models.ReturnDetail
+
 @{
     ViewData["Title"] = "Replacements";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
 <h1>Reklamacje i zwroty</h1>
+
+<hr />
+
+<div class="form-group">
+    <label asp-for="TypeOfReport" class="control-label"></label>
+    <select asp-for="TypeOfReport" asp-items="@Html.GetEnumSelectList<TypeOfReport>()">
+        <option value="">Wybierz</option>
+    </select>
+    <span asp-validation-for="TypeOfReport" class="text-danger"></span>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="Replacements">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="OrderId" class="control-label"></label>
+                <input asp-for="OrderId" class="form-control" />
+                <span asp-validation-for="OrderId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FirstName" class="control-label"></label>
+                <input asp-for="FirstName" class="form-control" />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LastName" class="control-label"></label>
+                <input asp-for="LastName" class="form-control" />
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+        </form>
+    </div>
+    <div class="col-md-6">
+        <form asp-action="Replacements">
+            <div class="form-group">
+                <label asp-for="DateOfPurchase" class="control-label"></label>
+                <input asp-for="DateOfPurchase" class="form-control" />
+                <span asp-validation-for="DateOfPurchase" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DateOfReceiving" class="control-label"></label>
+                <input asp-for="DateOfReceiving" class="form-control" />
+                <span asp-validation-for="DateOfReceiving" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProductName" class="control-label"></label>
+                <input asp-for="ProductName" class="form-control" />
+                <span asp-validation-for="ProductName" class="text-danger"></span>
+            </div>
+        </form>
+    </div>
+</div>
+
+    <form asp-action="Replacements">
+        <div class="form-group">
+            <label asp-for="Description" class="control-label"></label>
+            <input asp-for="Description" class="form-control" />
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Wyślij zgłoszenie" class="btn btn-primary" />
+        </div>
+    </form>
+
+
+    <div>
+        <a asp-action="Index">Back to List</a>
+    </div>
+
