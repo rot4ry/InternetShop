@@ -48,6 +48,11 @@ namespace INET_Project.Controllers
             return View("Privacy");
         }
 
+        public IActionResult Replacements()
+        {
+            return View("Replacements");
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
