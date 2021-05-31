@@ -1,4 +1,6 @@
-﻿namespace INET_Project.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace INET_Project.Models
 {
     /// <summary>
     /// Describes database table
@@ -7,9 +9,14 @@
     {
         public int ProductID { get; set; }  //Primary Key
         public int CategoryID { get; set; } //Foreign Key
+
+        [Display(Name = "Produkt")]
         public string ProductName { get; set; }
+        [Display(Name = "Marka")]
         public string Brand { get; set; }
+        [Display(Name = "Koszt")]
         public decimal UnitPrice { get; set; }
+        [Display(Name = "Ilość produktów")]
         public int QtAvailable { get; set; }
         public string ProducerCode { get; set; }
         
