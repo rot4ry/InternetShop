@@ -11,9 +11,14 @@ namespace INET_Project.Controllers
 {
     public class HomeController : Controller
     {
+        public static List<Product> products = new List<Product>();
 
         public IActionResult Main_Page()
         {
+            using (var context = new INETContext())
+            {
+                products = context.Product.ToList();
+            }
             return View();
         }
 

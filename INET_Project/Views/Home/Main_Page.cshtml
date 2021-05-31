@@ -1,4 +1,6 @@
-﻿
+﻿@model  IEnumerable<INET_Project.Models.Product>
+
+
 @{
     ViewData["Title"] = "Main_Page";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -62,7 +64,53 @@
     <div class="col-md-12">
         <div class="page-heade">
             <h3>Nasze produkty</h3>
-        </div>
+            <table class="table">
+                
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Brand)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.ProductName)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.QtAvailable)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.UnitPrice)
+                            </th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in INET_Project.Controllers.HomeController.products)
+                        {
+                        <tr>
+
+                            @*<td>
+            @if (item.ImageName != null)
+            {
+                <img src="~/images/@item.ImageName" width="50" height="50" style="border:1px solid black">
+            }
+        </td>*@
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ProductName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ProductName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.QtAvailable)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.UnitPrice)
+                            </td>
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+</div>
     </div>
 </div>
 
