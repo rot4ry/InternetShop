@@ -1,8 +1,25 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\Resources\case.jpg" />
+    <None Include="wwwroot\Resources\cooling.jpg" />
+    <None Include="wwwroot\Resources\cpu.jpg" />
+    <None Include="wwwroot\Resources\gpu.jpg" />
+    <None Include="wwwroot\Resources\hdd.jpg" />
+    <None Include="wwwroot\Resources\headphones.jpg" />
+    <None Include="wwwroot\Resources\keyboard.jpg" />
+    <None Include="wwwroot\Resources\monitor.jpg" />
+    <None Include="wwwroot\Resources\motherboard.jpg" />
+    <None Include="wwwroot\Resources\mouse.jpg" />
+    <None Include="wwwroot\Resources\powersupply.jpg" />
+    <None Include="wwwroot\Resources\ram.jpg" />
+    <None Include="wwwroot\Resources\speakers.jpg" />
+    <None Include="wwwroot\Resources\ssd.jpg" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="dropzone" Version="4.3.0" />

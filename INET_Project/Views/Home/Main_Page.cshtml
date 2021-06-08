@@ -1,4 +1,4 @@
-﻿@model  IEnumerable<INET_Project.Models.Product>
+﻿@model  IEnumerable<INET_Project.Models.ProductModel>
 
 
 @{
@@ -69,42 +69,40 @@
                     <thead>
                         <tr>
                             <th>
-                                @Html.DisplayNameFor(model => model.Brand)
+                                
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.ProductName)
+                                @Html.DisplayNameFor(model => model.Product.ProductName)
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.QtAvailable)
+                                @Html.DisplayNameFor(model => model.Product.QtAvailable)
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.UnitPrice)
+                                @Html.DisplayNameFor(model => model.Product.UnitPrice)
                             </th>
 
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach (var item in INET_Project.Controllers.HomeController.products)
+                        @foreach (var item in Model)
                         {
                         <tr>
+                            <td>
 
-                            @*<td>
-            @if (item.ImageName != null)
-            {
-                <img src="~/images/@item.ImageName" width="50" height="50" style="border:1px solid black">
-            }
-        </td>*@
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Brand)
+                                @if (item.ProductPicture.PicturePath != null)
+                                {
+                                    <img src="/@item.ProductPicture.PicturePath." width="50" height="50" style="border:1px solid black">
+                                }
+
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.ProductName)
+                                @Html.DisplayFor(modelItem => item.Product.ProductName)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.QtAvailable)
+                                @Html.DisplayFor(modelItem => item.Product.QtAvailable)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.UnitPrice)
+                                @Html.DisplayFor(modelItem => item.Product.UnitPrice)
                             </td>
                         </tr>
                         }

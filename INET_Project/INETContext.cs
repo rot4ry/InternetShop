@@ -10,6 +10,7 @@ namespace INET_Project
     public class INETContext : DbContext
     {
         public DbSet<Product> Product { get; set; }
+        public DbSet<ProductPicture> ProductPicture { get; set; }
 
         string connectionString = "Server=DENNPC\\SQLEXPRESS;Database=INET;Trusted_Connection=True;";
 
