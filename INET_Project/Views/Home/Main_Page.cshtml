@@ -75,10 +75,10 @@
                                 @Html.DisplayNameFor(model => model.Product.ProductName)
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.Product.QtAvailable)
+                                @Html.DisplayNameFor(model => model.Product.UnitPrice)
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.Product.UnitPrice)
+
                             </th>
 
                         </tr>
@@ -91,18 +91,18 @@
 
                                 @if (item.ProductPicture.PicturePath != null)
                                 {
-                                    <img src="/@item.ProductPicture.PicturePath" width="50" height="50" style="border:1px solid black">
+                                    <img src="/@item.ProductPicture.PicturePath" width="150" height="150" style="border:5px inset black;">
                                 }
 
                             </td>
-                            <td>
+                            <td style="vertical-align:middle">
                                 @Html.DisplayFor(modelItem => item.Product.ProductName)
                             </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Product.QtAvailable)
+                            <td style="vertical-align:middle">
+                                @Html.DisplayFor(modelItem => item.Product.UnitPrice) zł
                             </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Product.UnitPrice)
+                            <td style="vertical-align:middle">
+                                <button type="button" style="" class="btn mr-md-2 mb-md-0 mb-2 btn-dark">Kup teraz</button>
                             </td>
                         </tr>
                         }
