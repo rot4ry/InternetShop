@@ -11,15 +11,20 @@ namespace INET_Project.Controllers
 {
     public class HomeController : Controller
     {
-        public static List<Product> products = new List<Product>();
-
+        
         public IActionResult Main_Page()
         {
+
             using (var context = new INETContext())
             {
-                products = context.Product.ToList();
+
+                   var products = context.Product
+                    .Join(context.ProductPicture,
+                    product => product.ProductID,
+                    productPicture => productPicture.ProductID,
+                   (product, productPicture) => new ProductModel{ Product = product, ProductPicture = productPicture });
+                return View(products.ToList());
             }
-            return View();
         }
 
         private readonly ILogger<HomeController> _logger;
