@@ -12,7 +12,7 @@ namespace INET_Project.Controllers
     public class HomeController : Controller
     {
         
-        public IActionResult Main_Page(int page = 1)
+        public IActionResult Main_Page(string search, int page = 1)
         {
 
             using (var context = new INETContext())
@@ -22,15 +22,26 @@ namespace INET_Project.Controllers
                     .Join(context.ProductPicture,
                     product => product.ProductID,
                     productPicture => productPicture.ProductID,
-                   (product, productPicture) => new ProductModel{ Product = product, ProductPicture = productPicture });
+                   (product, productPicture) => new ProductModel{ Product = product, ProductPicture = productPicture }).ToList();
 
                 ViewBag.CurrentPage = page < 1 ? 1 : page;
 
                 var currentPage = (int)ViewBag.CurrentPage;
 
-                var forPage = products.ToList().Skip((currentPage-1)*10).Take(10);
+                
 
-                return View(forPage);
+                if (String.IsNullOrEmpty(search))
+                {
+                    var forPagination = products.Skip((currentPage - 1) * 10).Take(10);
+                    return View(forPagination);
+                }
+                else
+                {
+                    var filterSearch = products.Where(x => x.Product.ProductName.Contains(search));
+                    return View(filterSearch);
+                }
+
+
             }
         }
 
