@@ -11,7 +11,9 @@ namespace INET_Project.Controllers
 {
     public class HomeController : Controller
     {
-        
+
+        public static ProductModel Premiere { get; set; }
+
         public IActionResult Main_Page(string search, int page = 1)
         {
 
@@ -23,6 +25,9 @@ namespace INET_Project.Controllers
                     product => product.ProductID,
                     productPicture => productPicture.ProductID,
                    (product, productPicture) => new ProductModel{ Product = product, ProductPicture = productPicture }).ToList();
+
+                Premiere = products.FirstOrDefault().Copy();
+                Premiere.Product.ProductName = "Loudium Grass3 Computer Keyboard";
 
                 ViewBag.CurrentPage = page < 1 ? 1 : page;
 

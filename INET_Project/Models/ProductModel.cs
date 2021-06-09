@@ -10,5 +10,10 @@ namespace INET_Project.Models
     {
         public Product Product { get; set; }
         public ProductPicture ProductPicture { get; set; }
+
+        public ProductModel Copy()
+        {
+            return (ProductModel) this.MemberwiseClone();
+        }
     }
 }

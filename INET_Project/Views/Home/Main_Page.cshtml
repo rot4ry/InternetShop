@@ -55,96 +55,108 @@
 <hr style="height:2px;border-width:0;color:gray;background-color:gray">
 
 
-<div>
-    <h3>Wyszukaj produkt</h3>
-    <div class="form-inline">
-        <form asp-controller="Home" asp-action="Main_Page" method="get">
-            <input type="text" placeholder="Czego szukasz?" name="search" class="form-control" />
-            <button type="submit" class="btn btn-outline-dark">
-                <i class="fas fa-search"> Wyszukaj</i>
-            </button>
-        </form>
-    </div>
-</div>
-
-<section id="ProductsSection"></section>
-<hr style="height:2px;border-width:0;color:gray;background-color:gray">
 
 <div class="row">
-    <div class="col-md-12">
-        <div class="page-heade">
-            <h3>Nasze produkty</h3>
-            <table class="table">
+    <div class="col-md-4">
+        <h3>Wyszukaj produkt</h3>
+        <div class="form-inline">
+            <form asp-controller="Home" asp-action="Main_Page" method="get">
+                <input type="text" placeholder="Czego szukasz?" name="search" class="form-control" />
+                <button type="submit" class="btn mr-md-2 mb-md-0 mb-2 btn-dark">
+                    <i class="fas fa-search"> Wyszukaj</i>
+                </button>
+            </form>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="col-md-6">
+            <h3>Nadchodząca premiera</h3>
+            <p>@INET_Project.Controllers.HomeController.Premiere.Product.ProductName</p>
+        </div>
+        <div class="col-md-6">
+            <img src="/@INET_Project.Controllers.HomeController.Premiere.ProductPicture.PicturePath" width="150" height="150" style="border: 4px inset #343a40; margin-left:20px">
+        </div>
+    </div>
+</div>
 
-                <thead>
-                    <tr>
-                        <th>
+    <section id="ProductsSection"></section>
+    <hr style="height:2px;border-width:0;color:gray;background-color:gray">
 
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.Product.ProductName)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.Product.UnitPrice)
-                        </th>
-                        <th>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="page-heade">
+                <h3>Nasze produkty</h3>
+                <table class="table">
 
-                        </th>
-
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var item in Model)
-                    {
+                    <thead>
                         <tr>
-                            <td>
+                            <th>
 
-                                @if (item.ProductPicture.PicturePath != null)
-                                {
-                                    <img src="/@item.ProductPicture.PicturePath" width="150" height="150" style="border: 5px inset #343a40;">
-                                }
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Product.ProductName)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Product.UnitPrice)
+                            </th>
+                            <th>
 
-                            </td>
-                            <td style="vertical-align:middle">
-                                @Html.DisplayFor(modelItem => item.Product.ProductName)
-                            </td>
-                            <td style="vertical-align:middle">
-                                @Html.DisplayFor(modelItem => item.Product.UnitPrice) zł
-                            </td>
-                            <td style="vertical-align:middle">
-                                <button type="button" style="" class="btn mr-md-2 mb-md-0 mb-2 btn-dark">Kup teraz</button>
-                            </td>
+                            </th>
+
                         </tr>
-                    }
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+
+                                    @if (item.ProductPicture.PicturePath != null)
+                                    {
+                                        <img src="/@item.ProductPicture.PicturePath" width="150" height="150" style="border: 4px inset #343a40;">
+                                    }
+
+                                </td>
+                                <td style="vertical-align:middle">
+                                    @Html.DisplayFor(modelItem => item.Product.ProductName)
+                                </td>
+                                <td style="vertical-align:middle">
+                                    @Html.DisplayFor(modelItem => item.Product.UnitPrice) zł
+                                </td>
+                                <td style="vertical-align:middle">
+                                    <button type="button" style="" class="btn mr-md-2 mb-md-0 mb-2 btn-dark">Kup teraz</button>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
-</div>
 
-@{
-    var currentPage = (int)ViewBag.CurrentPage;
-}
+    @{
+        var currentPage = (int)ViewBag.CurrentPage;
+    }
 
 
-<div class="center">
-    <div class="pagination">
-        <div class="row">
-            @if (currentPage > 1)
-            {
-                <a class="btn mr-md-2 mb-md-0 mb-2 btn-dark" asp-action="Main_Page" asp-route-page="@(currentPage-1)">Poprzednia strona</a>
-            }
-            <a class="btn mr-md-2 mb-md-0 mb-2 btn-dark" asp-action="Main_Page" asp-route-page="@(currentPage+1)">Następna strona</a>
+    <div class="center">
+        <div class="pagination">
+            <div class="row">
+                @if (currentPage > 1)
+                {
+                    <a class="btn mr-md-2 mb-md-0 mb-2 btn-dark" asp-action="Main_Page" asp-route-page="@(currentPage-1)">Poprzednia strona</a>
+                }
+                <a class="btn mr-md-2 mb-md-0 mb-2 btn-dark" asp-action="Main_Page" asp-route-page="@(currentPage+1)">Następna strona</a>
+            </div>
         </div>
     </div>
-</div>
 
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $('.carousel').carousel();
-        });
-    </script>
-}
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('.carousel').carousel();
+            });
+        </script>
+    }
