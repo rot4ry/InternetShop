@@ -37,7 +37,7 @@ namespace INET_Project.Controllers
                 }
                 else
                 {
-                    var filterSearch = products.Where(x => x.Product.ProductName.Contains(search));
+                    var filterSearch = products.Where(x => x.Product.ProductName.ToUpper().Contains(search.ToUpper()));
                     return View(filterSearch);
                 }
 
