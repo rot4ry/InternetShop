@@ -12,7 +12,7 @@ namespace INET_Project.Controllers
     public class HomeController : Controller
     {
         
-        public IActionResult Main_Page()
+        public IActionResult Main_Page(int page = 1)
         {
 
             using (var context = new INETContext())
@@ -23,7 +23,14 @@ namespace INET_Project.Controllers
                     product => product.ProductID,
                     productPicture => productPicture.ProductID,
                    (product, productPicture) => new ProductModel{ Product = product, ProductPicture = productPicture });
-                return View(products.ToList());
+
+                ViewBag.CurrentPage = page < 1 ? 1 : page;
+
+                var currentPage = (int)ViewBag.CurrentPage;
+
+                var forPage = products.ToList().Skip((currentPage-1)*10).Take(10);
+
+                return View(forPage);
             }
         }
 
