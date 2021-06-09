@@ -9,6 +9,7 @@ namespace INET_Project
 {
     public class INETContext : DbContext
     {
+
         public DbSet<Product> Product { get; set; }
         public DbSet<ProductPicture> ProductPicture { get; set; }
 
