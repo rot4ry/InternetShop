@@ -48,13 +48,16 @@
 <section id="SearchSection"></section>
 <hr style="height:2px;border-width:0;color:gray;background-color:gray">
 
+
 <div>
     <h3>Wyszukaj produkt</h3>
     <div class="form-inline">
-        <input type="search" placeholder="Czego szukasz?" aria-label="Search" class="form-control" />
-        <button type="submit" class="btn btn-outline-dark">
-            <i class="fas fa-search"> Wyszukaj</i>
-        </button>
+        <form asp-controller="Home" asp-action="Main_Page" method="get">
+            <input type="text" placeholder="Czego szukasz?" name="search" class="form-control" />
+            <button type="submit" class="btn btn-outline-dark">
+                <i class="fas fa-search"> Wyszukaj</i>
+            </button>
+        </form>
     </div>
 </div>
 
