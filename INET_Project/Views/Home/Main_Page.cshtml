@@ -1,10 +1,11 @@
-﻿@model  IEnumerable<INET_Project.Models.ProductModel>
+﻿@model IEnumerable<INET_Project.Models.ProductModel>
 
 
 @{
     ViewData["Title"] = "Main_Page";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
 
 <section id="CarouselSection"></section>
 
@@ -65,33 +66,33 @@
         <div class="page-heade">
             <h3>Nasze produkty</h3>
             <table class="table">
-                
-                    <thead>
-                        <tr>
-                            <th>
-                                
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Product.ProductName)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Product.UnitPrice)
-                            </th>
-                            <th>
 
-                            </th>
+                <thead>
+                    <tr>
+                        <th>
 
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var item in Model)
-                        {
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Product.ProductName)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Product.UnitPrice)
+                        </th>
+                        <th>
+
+                        </th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
                         <tr>
                             <td>
 
                                 @if (item.ProductPicture.PicturePath != null)
                                 {
-                                    <img src="/@item.ProductPicture.PicturePath" width="150" height="150" style="border:5px inset black;">
+                                    <img src="/@item.ProductPicture.PicturePath" width="150" height="150" style="border: 5px inset #343a40;">
                                 }
 
                             </td>
@@ -105,12 +106,30 @@
                                 <button type="button" style="" class="btn mr-md-2 mb-md-0 mb-2 btn-dark">Kup teraz</button>
                             </td>
                         </tr>
-                        }
-                    </tbody>
-                </table>
-</div>
+                    }
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
+
+@{
+    var currentPage = (int)ViewBag.CurrentPage;
+}
+
+
+<div class="center">
+    <div class="pagination">
+        <div class="row">
+            @if (currentPage > 1)
+            {
+                <a class="btn mr-md-2 mb-md-0 mb-2 btn-dark" asp-action="Main_Page" asp-route-page="@(currentPage-1)">Poprzednia strona</a>
+            }
+            <a class="btn mr-md-2 mb-md-0 mb-2 btn-dark" asp-action="Main_Page" asp-route-page="@(currentPage+1)">Następna strona</a>
+        </div>
+    </div>
+</div>
+
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
