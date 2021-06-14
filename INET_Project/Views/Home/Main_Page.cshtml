@@ -118,7 +118,9 @@
 
                                 </td>
                                 <td style="vertical-align:middle">
+                                    <a class="active" asp-action="Product_Page" asp-route-item="@item.Product.ProductID">
                                     @Html.DisplayFor(modelItem => item.Product.ProductName)
+                                    </a>
                                 </td>
                                 <td style="vertical-align:middle">
                                     @Html.DisplayFor(modelItem => item.Product.UnitPrice) zł
