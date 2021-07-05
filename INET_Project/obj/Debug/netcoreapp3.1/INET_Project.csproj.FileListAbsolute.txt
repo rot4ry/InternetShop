@@ -387,3 +387,7 @@ E:\Users\denn\Documents\GitHub\InternetShop\INET_Project\bin\Debug\netcoreapp3.1
 E:\Users\denn\Documents\GitHub\InternetShop\INET_Project\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
 E:\Users\denn\Documents\GitHub\InternetShop\INET_Project\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
 E:\Users\denn\Documents\GitHub\InternetShop\INET_Project\obj\Debug\netcoreapp3.1\Razor\Views\Home\Product_Page.cshtml.g.cs
+E:\Users\denn\Documents\GitHub\InternetShop\INET_Project\bin\Debug\netcoreapp3.1\xunit.abstractions.dll
+E:\Users\denn\Documents\GitHub\InternetShop\INET_Project\bin\Debug\netcoreapp3.1\xunit.assert.dll
+E:\Users\denn\Documents\GitHub\InternetShop\INET_Project\bin\Debug\netcoreapp3.1\xunit.core.dll
+E:\Users\denn\Documents\GitHub\InternetShop\INET_Project\bin\Debug\netcoreapp3.1\xunit.execution.dotnet.dll

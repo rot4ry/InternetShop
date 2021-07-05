@@ -14,6 +14,9 @@ namespace INET_Project.Controllers
 
         public static ProductModel Premiere { get; set; }
 
+        public static string FirstName { get; set; }
+        public static string LastName { get; set; }
+
         public IActionResult Main_Page(string search, int page = 1)
         {
 
@@ -83,6 +86,18 @@ namespace INET_Project.Controllers
 
         public IActionResult Replacements()
         {
+            return View("Replacements");
+        }
+
+        [HttpPost("Home/Replacements")]
+        public IActionResult ReplacementsAsync(ReturnDetail returnDetail)
+        {
+            Test test = new Test();
+
+            FirstName = returnDetail.FirstName;
+            LastName = returnDetail.LastName;
+            test.ValidName();
+
             return View("Replacements");
         }
 
