@@ -89,6 +89,7 @@ namespace INET_Project.Controllers
             return View("Replacements");
         }
 
+
         [HttpPost("Home/Replacements")]
         public IActionResult ReplacementsAsync(ReturnDetail returnDetail)
         {
@@ -100,6 +101,14 @@ namespace INET_Project.Controllers
 
             return View("Replacements");
         }
+
+
+        public IActionResult Order()
+        {
+            return View("Order");
+        }
+
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
