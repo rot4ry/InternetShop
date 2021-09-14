@@ -113,25 +113,54 @@ namespace INET_Project.Controllers
         public async Task<IActionResult> Order(ShippingDetail shipping)
         {
             LocalOrder = shipping;
-
-            using (var context = new INETContext())
-            {
-                if (context.Client.Select(x=>x.EmailAddress).Contains(LocalOrder.Client.EmailAddress))
-                {
-                    
-                }
-                else
-                {
-                   
-                }
-            }
          
-
             return RedirectToAction(nameof(Summary));
         }
 
         public IActionResult Summary(ShippingDetail shipping)
         {
+            using (var context = new INETContext())
+            {
+                if (!(context.Client.Select(x => x.EmailAddress).Contains(LocalOrder.Client.EmailAddress)))
+                {
+                    context.Client.Add(new Client
+                    {
+                        FirstName = shipping.Client.FirstName,
+                        SecondName = shipping.Client.SecondName,
+                        City = shipping.Client.City,
+                        Country = shipping.Client.Country,
+                        Street = shipping.Client.Street,
+                        EmailAddress = shipping.Client.EmailAddress,
+                        BuildingNumber = shipping.Client.BuildingNumber
+                    });
+                }
+
+                context.SaveChanges();
+
+
+                context.Order.Add(new Order
+                {
+                    ClientID = context.Client.LastOrDefault().ClientID,
+                    PreparedDate = DateTime.Now.AddDays(1),
+                    SentToAddress = $"{shipping.Client.City}, {shipping.Client.Street} {shipping.Client.BuildingNumber}, {shipping.Client.Country}",
+                    IsInvoiced = true
+
+                });
+
+                context.SaveChanges();
+
+
+                context.OrderDetail.Add(new OrderDetail
+                {
+                    OrderID = context.Order.LastOrDefault().OrderID,
+                    Quantity = shipping.OrderDetail.Quantity,
+                    UnitPrice = shipping.OrderDetail.UnitPrice,
+                    ProductID = Products.Select(x => x.Product.ProductID).LastOrDefault(),
+                }) ;
+
+                context.SaveChanges();
+
+            }
             return View("Summary", LocalOrder);
         }
 

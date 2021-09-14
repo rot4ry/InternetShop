@@ -35,20 +35,24 @@
 
                         @if (item.ProductPicture.PicturePath != null)
                         {
-                            <img src="/@item.ProductPicture.PicturePath" width="150" height="150" style="border: 4px inset #343a40;">
+                            <img src="/@item.ProductPicture.PicturePath" width="300" height="300" style="border: 3px inset #343a40;">
                         }
 
                     </td>
                     <td style="vertical-align:middle">
-                        <a class="active" asp-action="Product_Page" asp-route-item="@item.Product.ProductID">
+                        <a class="active" style="font:bold 30px Arial">
                             @Html.DisplayFor(modelItem => item.Product.ProductName)
                         </a>
+                        <br>
+                        <a class="active" style="font:normal 20px Arial">
+                            @Html.DisplayFor(modelItem => item.Product.ProductDescription)
+                        </a>
                     </td>
-                    <td style="vertical-align:middle">
+                    <td style="vertical-align:middle; font:bold 20px Arial">
                         @Html.DisplayFor(modelItem => item.Product.UnitPrice) zł
                     </td>
                     <td style="vertical-align:middle">
-                        <input asp-for="OrderDetail.Quantity" placeholder="Liczba" />
+                        <input asp-for="OrderDetail.Quantity" placeholder="Liczba" min="1" max="20"/>
                     </td>
                 </tr>
             }
