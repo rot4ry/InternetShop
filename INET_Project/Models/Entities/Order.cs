@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace INET_Project.Models
 {
@@ -7,6 +8,7 @@ namespace INET_Project.Models
     /// </summary>
     public class Order
     {
+        [Key]
         public int OrderID { get; set; }    //Primary Key
         public int ClientID { get; set; }   //Foreign Key
         public DateTime ReceivedDate { get; set; }

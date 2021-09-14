@@ -1,7 +1,7 @@
 ﻿@model INET_Project.Models.ShippingDetail
 
 @{
-    ViewData["Title"] = "View";
+    ViewData["Title"] = "Zamówienie";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -11,8 +11,50 @@
 
 <hr />
 
-<form asp-action="Order">
+@{
+    var products = INET_Project.Controllers.HomeController.Products;
+
+
+    if (Context.Request.Query["item"].FirstOrDefault() != null)
+    {
+        string itemid = Context.Request.Query["item"].FirstOrDefault();
+        products = products.Where(x => x.Product.ProductID == Convert.ToInt32(itemid)).ToList();
+        INET_Project.Controllers.HomeController.Products = products;
+    }
+
+}
+
+<form asp-action="Order" enctype="multipart/form-data">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <table class="table">
+        <tbody>
+            @foreach (var item in products)
+            {
+                <tr>
+                    <td>
+
+                        @if (item.ProductPicture.PicturePath != null)
+                        {
+                            <img src="/@item.ProductPicture.PicturePath" width="150" height="150" style="border: 4px inset #343a40;">
+                        }
+
+                    </td>
+                    <td style="vertical-align:middle">
+                        <a class="active" asp-action="Product_Page" asp-route-item="@item.Product.ProductID">
+                            @Html.DisplayFor(modelItem => item.Product.ProductName)
+                        </a>
+                    </td>
+                    <td style="vertical-align:middle">
+                        @Html.DisplayFor(modelItem => item.Product.UnitPrice) zł
+                    </td>
+                    <td style="vertical-align:middle">
+                        <input asp-for="OrderDetail.Quantity" placeholder="Liczba" />
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
     <div class="row">
         <div class="col-md-6">
             <div class="form-group">
@@ -31,16 +73,12 @@
                 <span asp-validation-for="Client.EmailAddress" class="text-danger"></span>
             </div>
 
-            <div class="form-group" style="margin-top:40px">
+            <div class="form-group" style="margin-top:0px">
                 <label asp-for="TypeOfOrder" class="control-label"></label>
                 <select asp-for="TypeOfOrder" asp-items="@Html.GetEnumSelectList<TypeOfOrder>()">
                     <option value="">Wybierz...</option>
                 </select>
                 <span asp-validation-for="TypeOfOrder" class="text-danger"></span>
-            </div>
-
-            <div class="form-group"style="margin-top:20px">
-                <label class="control-label">Koszt zamówienia: </label>
             </div>
         </div>
 
@@ -71,10 +109,10 @@
     <div class="col-md-6">
         <div class="row">
             <div class="form-group">
-                <input type="submit" value="Złóż zamówienie" class="btn mr-md-2 mb-md-0 mb-2 btn-dark" />
+                <input type="submit" value="Przejdź do podsumowania" class="btn mr-md-2 mb-md-0 mb-2 btn-dark" />
             </div>
             <div class="form-group">
-                <input type="submit" asp-action="Main_Page" value="Wróć na stronę główną" class="btn mr-md-2 mb-md-0 mb-2 btn-dark" />
+                <input type="submit" value="Powrót" asp-action="Main_Page" class="btn mr-md-2 mb-md-0 mb-2 btn-dark" />
             </div>
         </div>
     </div>

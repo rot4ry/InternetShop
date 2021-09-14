@@ -1,0 +1,115 @@
+﻿@model INET_Project.Models.ShippingDetail
+
+@{
+    ViewData["Title"] = "Podsumowanie zamówienia";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Twoje zamówienie</h1>
+
+<p>Podsumowanie</p>
+
+<hr />
+
+
+@{
+    var products = INET_Project.Controllers.HomeController.Products;
+    var prize = products.FirstOrDefault().Product.UnitPrice;
+    var quantity = Model.OrderDetail.Quantity;
+    double payment = Math.Round((double)(quantity * prize), 2);
+
+    if (Model.TypeOfOrder == 0)
+    {
+        payment = payment + 25;
+    }
+}
+
+<form asp-action="Order" enctype="multipart/form-data">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <table class="table">
+        <tbody>
+            @foreach (var item in products)
+            {
+                <tr>
+                    <td>
+
+                        @if (item.ProductPicture.PicturePath != null)
+                        {
+                            <img src="/@item.ProductPicture.PicturePath" width="150" height="150" style="border: 4px inset #343a40;">
+                        }
+
+                    </td>
+                    <td style="vertical-align:middle">
+                        <a class="active" asp-action="Product_Page" asp-route-item="@item.Product.ProductID">
+                            @Html.DisplayFor(modelItem => item.Product.ProductName)
+                        </a>
+                    </td>
+                    <td style="vertical-align:middle">
+                        @Html.DisplayFor(modelItem => item.Product.UnitPrice)zł
+                    </td>
+                    <td style="vertical-align:middle">
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label asp-for="Client.FirstName" class="control-label"></label>
+                <p>@(Model.Client.FirstName)</p>
+
+            </div>
+            <div class="form-group">
+                <label asp-for="Client.SecondName" class="control-label"></label>
+                <p>@(Model.Client.SecondName)</p>
+
+            </div>
+            <div class="form-group">
+                <label asp-for="Client.EmailAddress" class="control-label"></label>
+                <p>@(Model.Client.EmailAddress)</p>
+            </div>
+
+            <div class="form-group" style="margin-top:0px">
+                <label asp-for="TypeOfOrder" class="control-label"></label>
+                <label>@(Model.TypeOfOrder)</label>
+            </div>
+
+            <div class="form-group">
+                <label>Do zapłaty: @(payment)zł</label>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="form-group">
+                <label asp-for="Client.City" class="control-label"></label>
+                <p>@(Model.Client.City)</p>
+            </div>
+            <div class="form-group">
+                <label asp-for="Client.Street" class="control-label"></label>
+                <p>@(Model.Client.Street)</p>
+            </div>
+            <div class="form-group">
+                <label asp-for="Client.BuildingNumber" class="control-label"></label>
+                <p>@(Model.Client.BuildingNumber)</p>
+            </div>
+            <div class="form-group">
+                <label asp-for="Client.Country" class="control-label"></label>
+                <p>@(Model.Client.Country)</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="row">
+            <div class="form-group">
+                <a class="btn mr-md-2 mb-md-0 mb-2 btn-dark" asp-controller="Home" asp-action="Main_Page">Złóż zamówienie</a>
+            </div>
+            <div class="form-group">
+                <a class="btn mr-md-2 mb-md-0 mb-2 btn-dark" asp-controller="Home" asp-action="Main_Page">Wróć na stronę główną</a>
+            </div>
+        </div>
+    </div>
+
+</form>

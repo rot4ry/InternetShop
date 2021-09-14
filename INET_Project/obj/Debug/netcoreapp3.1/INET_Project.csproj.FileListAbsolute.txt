@@ -392,3 +392,4 @@ E:\Users\denn\Documents\GitHub\InternetShop\INET_Project\bin\Debug\netcoreapp3.1
 E:\Users\denn\Documents\GitHub\InternetShop\INET_Project\bin\Debug\netcoreapp3.1\xunit.core.dll
 E:\Users\denn\Documents\GitHub\InternetShop\INET_Project\bin\Debug\netcoreapp3.1\xunit.execution.dotnet.dll
 E:\Users\denn\Documents\GitHub\InternetShop\INET_Project\obj\Debug\netcoreapp3.1\Razor\Views\Home\Order.cshtml.g.cs
+E:\Users\denn\Documents\GitHub\InternetShop\INET_Project\obj\Debug\netcoreapp3.1\Razor\Views\Home\Summary.cshtml.g.cs

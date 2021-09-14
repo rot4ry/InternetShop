@@ -16,6 +16,8 @@ namespace INET_Project.Controllers
 
         public static string FirstName { get; set; }
         public static string LastName { get; set; }
+        public static List<ProductModel> Products { get; set; }
+        public static ShippingDetail LocalOrder { get; set; }
 
         public IActionResult Main_Page(string search, int page = 1)
         {
@@ -23,13 +25,13 @@ namespace INET_Project.Controllers
             using (var context = new INETContext())
             {
 
-                   var products = context.Product
+                    Products = context.Product
                     .Join(context.ProductPicture,
                     product => product.ProductID,
                     productPicture => productPicture.ProductID,
                    (product, productPicture) => new ProductModel{ Product = product, ProductPicture = productPicture }).ToList();
 
-                Premiere = products.FirstOrDefault().Copy();
+                Premiere = Products.FirstOrDefault().Copy();
                 Premiere.Product.ProductName = "Loudium Grass3 Computer Keyboard";
 
                 ViewBag.CurrentPage = page < 1 ? 1 : page;
@@ -40,18 +42,19 @@ namespace INET_Project.Controllers
 
                 if (String.IsNullOrEmpty(search))
                 {
-                    var forPagination = products.Skip((currentPage - 1) * 10).Take(10);
+                    var forPagination = Products.Skip((currentPage - 1) * 10).Take(10);
                     return View(forPagination);
                 }
                 else
                 {
-                    var filterSearch = products.Where(x => x.Product.ProductName.ToUpper().Contains(search.ToUpper()));
+                    var filterSearch = Products.Where(x => x.Product.ProductName.ToUpper().Contains(search.ToUpper()));
                     return View(filterSearch);
                 }
 
 
             }
         }
+
 
         private readonly ILogger<HomeController> _logger;
 
@@ -89,9 +92,8 @@ namespace INET_Project.Controllers
             return View("Replacements");
         }
 
-
         [HttpPost("Home/Replacements")]
-        public IActionResult ReplacementsAsync(ReturnDetail returnDetail)
+        public async Task<IActionResult> ReplacementsAsync(ReturnDetail returnDetail)
         {
             Test test = new Test();
 
@@ -99,15 +101,39 @@ namespace INET_Project.Controllers
             LastName = returnDetail.LastName;
             test.ValidName();
 
-            return View("Replacements");
+            return RedirectToAction(nameof(Main_Page));
         }
-
 
         public IActionResult Order()
         {
             return View("Order");
         }
 
+        [HttpPost]
+        public async Task<IActionResult> Order(ShippingDetail shipping)
+        {
+            LocalOrder = shipping;
+
+            using (var context = new INETContext())
+            {
+                if (context.Client.Select(x=>x.EmailAddress).Contains(LocalOrder.Client.EmailAddress))
+                {
+                    
+                }
+                else
+                {
+                   
+                }
+            }
+         
+
+            return RedirectToAction(nameof(Summary));
+        }
+
+        public IActionResult Summary(ShippingDetail shipping)
+        {
+            return View("Summary", LocalOrder);
+        }
 
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

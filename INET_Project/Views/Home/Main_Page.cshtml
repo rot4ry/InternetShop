@@ -88,88 +88,88 @@
     </div>
 </div>
 
-    <section id="ProductsSection"></section>
-    <hr style="height:2px;border-width:0;color:gray;background-color:gray">
+<section id="ProductsSection"></section>
+<hr style="height:2px;border-width:0;color:gray;background-color:gray">
 
-    <div class="row">
-        <div class="col-md-12">
-            <div class="page-heade">
-                <h3>Nasze produkty</h3>
-                <table class="table">
+<div class="row">
+    <div class="col-md-12">
+        <div class="page-heade">
+            <h3>Nasze produkty</h3>
+            <table class="table">
 
-                    <thead>
+                <thead>
+                    <tr>
+                        <th>
+
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Product.ProductName)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Product.UnitPrice)
+                        </th>
+                        <th>
+
+                        </th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
                         <tr>
-                            <th>
+                            <td>
 
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Product.ProductName)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Product.UnitPrice)
-                            </th>
-                            <th>
+                                @if (item.ProductPicture.PicturePath != null)
+                                {
+                                    <img src="/@item.ProductPicture.PicturePath" width="150" height="150" style="border: 4px inset #343a40;">
+                                }
 
-                            </th>
-
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var item in Model)
-                        {
-                            <tr>
-                                <td>
-
-                                    @if (item.ProductPicture.PicturePath != null)
-                                    {
-                                        <img src="/@item.ProductPicture.PicturePath" width="150" height="150" style="border: 4px inset #343a40;">
-                                    }
-
-                                </td>
-                                <td style="vertical-align:middle">
-                                    <a class="active" asp-action="Product_Page" asp-route-item="@item.Product.ProductID">
+                            </td>
+                            <td style="vertical-align:middle">
+                                <a class="active" asp-action="Product_Page" asp-route-item="@item.Product.ProductID">
                                     @Html.DisplayFor(modelItem => item.Product.ProductName)
-                                    </a>
-                                </td>
-                                <td style="vertical-align:middle">
-                                    @Html.DisplayFor(modelItem => item.Product.UnitPrice) zł
-                                </td>
-                                <td style="vertical-align:middle">
-                                    <button type="button" style="" class="btn mr-md-2 mb-md-0 mb-2 btn-dark"><i class="fa fa-shopping-cart fa-lg"></i>+</button>
-                                    <button type="button" style="" class="btn mr-md-2 mb-md-0 mb-2 btn-dark">Kup teraz</button>
-                                </td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
-            </div>
+                                </a>
+                            </td>
+                            <td style="vertical-align:middle">
+                                @Html.DisplayFor(modelItem => item.Product.UnitPrice) zł
+                            </td>
+                            <td style="vertical-align:middle">
+                                <button type="button" style="" class="btn mr-md-2 mb-md-0 mb-2 btn-dark"><i class="fa fa-shopping-cart fa-lg"></i>+</button>
+                                 <a class="btn mr-md-2 mb-md-0 mb-2 btn-dark" asp-action="Order" asp-route-item="@item.Product.ProductID">Kup teraz</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
         </div>
     </div>
+</div>
 
-    @{
-        var currentPage = (int)ViewBag.CurrentPage;
-    }
+@{
+    var currentPage = (int)ViewBag.CurrentPage;
+}
 
 
-    <div class="center">
-        <div class="pagination">
-            <div class="row">
-                @if (currentPage > 1)
-                {
-                    <a class="btn mr-md-2 mb-md-0 mb-2 btn-dark" asp-action="Main_Page" asp-route-page="@(currentPage-1)">Poprzednia strona</a>
-                }
-                <a class="btn mr-md-2 mb-md-0 mb-2 btn-dark" asp-action="Main_Page" asp-route-page="@(currentPage+1)">Następna strona</a>
-                <p style="margin-left:20px; margin-top:5px">Strona @(currentPage)</p>
-            </div>
+<div class="center">
+    <div class="pagination">
+        <div class="row">
+            @if (currentPage > 1)
+            {
+                <a class="btn mr-md-2 mb-md-0 mb-2 btn-dark" asp-action="Main_Page" asp-route-page="@(currentPage-1)">Poprzednia strona</a>
+            }
+            <a class="btn mr-md-2 mb-md-0 mb-2 btn-dark" asp-action="Main_Page" asp-route-page="@(currentPage+1)">Następna strona</a>
+            <p style="margin-left:20px; margin-top:5px">Strona @(currentPage)</p>
         </div>
     </div>
+</div>
 
 
-    @section Scripts {
-        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-        <script type="text/javascript">
-            $(document).ready(function () {
-                $('.carousel').carousel();
-            });
-        </script>
-    }
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.carousel').carousel();
+        });
+    </script>
+}
