@@ -92,6 +92,11 @@ namespace INET_Project.Controllers
             return View("Replacements");
         }
 
+        public IActionResult Product_Page()
+        {
+            return View("Product_Page");
+        }
+
         [HttpPost("Home/Replacements")]
         public async Task<IActionResult> ReplacementsAsync(ReturnDetail returnDetail)
         {
@@ -118,7 +123,23 @@ namespace INET_Project.Controllers
         }
 
         public IActionResult Summary(ShippingDetail shipping)
-        {
+       {
+            shipping = LocalOrder;
+
+            var products = Products;
+            var prize = products.FirstOrDefault().Product.UnitPrice;
+            var quantity = LocalOrder.OrderDetail.Quantity;
+            double payment = Math.Round((double)(quantity * prize), 2);
+
+            if (LocalOrder.TypeOfOrder == 0)
+            {
+                payment = payment + 25;
+            }
+
+            LocalOrder.OrderDetail.UnitPrice = prize;
+
+            shipping = LocalOrder;
+
             using (var context = new INETContext())
             {
                 if (!(context.Client.Select(x => x.EmailAddress).Contains(LocalOrder.Client.EmailAddress)))
@@ -131,28 +152,34 @@ namespace INET_Project.Controllers
                         Country = shipping.Client.Country,
                         Street = shipping.Client.Street,
                         EmailAddress = shipping.Client.EmailAddress,
-                        BuildingNumber = shipping.Client.BuildingNumber
+                        BuildingNumber = shipping.Client.BuildingNumber,
+                        Login = shipping.Client.FirstName,
+                        Password = shipping.Client.SecondName
                     });
                 }
 
                 context.SaveChanges();
 
 
+                var clientID = context.Client.Select(x=>x.ClientID).Max();
+
                 context.Order.Add(new Order
                 {
-                    ClientID = context.Client.LastOrDefault().ClientID,
-                    PreparedDate = DateTime.Now.AddDays(1),
+                    ClientID = clientID,
+                    PreparedDate = DateTime.Now,
                     SentToAddress = $"{shipping.Client.City}, {shipping.Client.Street} {shipping.Client.BuildingNumber}, {shipping.Client.Country}",
                     IsInvoiced = true
 
-                });
+                }) ;
 
                 context.SaveChanges();
 
 
+                var orderID = context.Order.Select(x => x.OrderID).Max();
+
                 context.OrderDetail.Add(new OrderDetail
                 {
-                    OrderID = context.Order.LastOrDefault().OrderID,
+                    OrderID = orderID,
                     Quantity = shipping.OrderDetail.Quantity,
                     UnitPrice = shipping.OrderDetail.UnitPrice,
                     ProductID = Products.Select(x => x.Product.ProductID).LastOrDefault(),

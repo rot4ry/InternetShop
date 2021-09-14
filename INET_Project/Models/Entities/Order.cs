@@ -11,7 +11,7 @@ namespace INET_Project.Models
         [Key]
         public int OrderID { get; set; }    //Primary Key
         public int ClientID { get; set; }   //Foreign Key
-        public DateTime ReceivedDate { get; set; }
+        public DateTime? ReceivedDate { get; set; }
         public DateTime? PreparedDate { get; set; }
         public DateTime? SentDate { get; set; }
         public string SentToAddress { get; set; }

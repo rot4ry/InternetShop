@@ -52,7 +52,7 @@
                         @Html.DisplayFor(modelItem => item.Product.UnitPrice) zł
                     </td>
                     <td style="vertical-align:middle">
-                        <input asp-for="OrderDetail.Quantity" placeholder="Liczba" min="1" max="20"/>
+                        <input asp-for="OrderDetail.Quantity" required placeholder="Liczba" min="1" max="20"/>
                     </td>
                 </tr>
             }

@@ -1,5 +1,71 @@
-﻿@{
-    ViewData["Title"] = "Product_Page";
+﻿@model INET_Project.Models.ShippingDetail
+
+
+@{
+    ViewData["Title"] = "Strona produktu";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+
+<hr />
+
+@{
+    var products = INET_Project.Controllers.HomeController.Products;
+
+
+    if (Context.Request.Query["item"].FirstOrDefault() != null)
+    {
+        string itemid = Context.Request.Query["item"].FirstOrDefault();
+        products = products.Where(x => x.Product.ProductID == Convert.ToInt32(itemid)).ToList();
+        INET_Project.Controllers.HomeController.Products = products;
+    }
+
+}
+
+<form asp-action="Order" enctype="multipart/form-data">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <table class="table">
+        <tbody>
+            @foreach (var item in products)
+            {
+            <tr>
+                <td>
+
+                    @if (item.ProductPicture.PicturePath != null)
+                    {
+                        <img src="/@item.ProductPicture.PicturePath" width="400" height="400" style="border: 3px inset #343a40;">
+                    }
+
+                </td>
+                <td style="vertical-align:middle">
+                    <a class="active" style="font:bold 35px Arial">
+                        @Html.DisplayFor(modelItem => item.Product.ProductName)
+                    </a>
+                    <br>
+                    <a class="active" style="font:normal 25px Arial">
+                        @Html.DisplayFor(modelItem => item.Product.ProductDescription)
+                    </a>
+                </td>
+                <td style="vertical-align:middle; font:bold 25px Arial">
+                    @Html.DisplayFor(modelItem => item.Product.UnitPrice) zł
+                </td>
+                <td style="vertical-align:middle">
+                    <a class="btn mr-md-2 mb-md-0 mb-2 btn-dark" asp-action="Order" asp-route-item="@item.Product.ProductID">Kup teraz</a>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+
+
+    <div class="col-md-6">
+        <div class="row">
+            <div class="form-group">
+                <input type="submit" value="Powrót do strony głównej" asp-action="Main_Page" class="btn mr-md-2 mb-md-0 mb-2 btn-dark" />
+            </div>
+        </div>
+    </div>
+
+</form>
+
 
