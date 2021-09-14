@@ -51,6 +51,10 @@
                 </td>
                 <td style="vertical-align:middle">
                     <a class="btn mr-md-2 mb-md-0 mb-2 btn-dark" asp-action="Order" asp-route-item="@item.Product.ProductID">Kup teraz</a>
+                    <br>
+                    <a class="active" style="font:normal 10px Arial">
+                        @Html.DisplayFor(modelItem => item.Product.QtAvailable) sztuk dostępnych
+                    </a>
                 </td>
             </tr>
             }

@@ -7,18 +7,11 @@ using System.Threading.Tasks;
 namespace INET_Project.Models
 {
 
-    public enum TypeOfReport
-    {
-        [Display(Name = "Zwrot")]
-        Return,
-        [Display(Name = "Reklamacja")]
-        Replacement,
-    }
+
 
     public class ReturnDetail
     {
-        [Display(Name = "Rodzaj zgłoszenia: ")]
-        public TypeOfReport? TypeOfReport { get; set; }
+
         [Display(Name = "ID zamówienia")]
         public int OrderId { get; set; }
         [Display(Name = "Imię")]
@@ -33,5 +26,8 @@ namespace INET_Project.Models
         public string ProductName { get; set; }
         [Display(Name = "Opis")]
         public string Description { get; set; }
+        [Key]
+        [Display(Name = "ID zgłoszenia")]
+        public int ReportID { get; set; }
     }
 }

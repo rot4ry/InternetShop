@@ -24,12 +24,13 @@ namespace INET_Project.Controllers
 
             using (var context = new INETContext())
             {
+            
 
-                    Products = context.Product
-                    .Join(context.ProductPicture,
-                    product => product.ProductID,
-                    productPicture => productPicture.ProductID,
-                   (product, productPicture) => new ProductModel{ Product = product, ProductPicture = productPicture }).ToList();
+                Products = context.Product
+                .Join(context.ProductPicture,
+                product => product.ProductID,
+                productPicture => productPicture.ProductID,
+               (product, productPicture) => new ProductModel { Product = product, ProductPicture = productPicture }).ToList();
 
                 Premiere = Products.FirstOrDefault().Copy();
                 Premiere.Product.ProductName = "Loudium Grass3 Computer Keyboard";
@@ -38,7 +39,7 @@ namespace INET_Project.Controllers
 
                 var currentPage = (int)ViewBag.CurrentPage;
 
-                
+
 
                 if (String.IsNullOrEmpty(search))
                 {
@@ -76,7 +77,7 @@ namespace INET_Project.Controllers
         {
             return View("About");
         }
-        
+
         public IActionResult Contact()
         {
             return View("Contact");
@@ -87,24 +88,35 @@ namespace INET_Project.Controllers
             return View("Privacy");
         }
 
-        public IActionResult Replacements()
-        {
-            return View("Replacements");
-        }
-
         public IActionResult Product_Page()
         {
             return View("Product_Page");
         }
 
+
+        public IActionResult Replacements()
+        {
+            return View("Replacements");
+        }
+
         [HttpPost("Home/Replacements")]
         public async Task<IActionResult> ReplacementsAsync(ReturnDetail returnDetail)
         {
-            Test test = new Test();
+            //using (var context = new INETContext())
+            //{
+            //    context.ReturnDetail.Add(new ReturnDetail
+            //    {
+            //        OrderId = returnDetail.OrderId,
+            //        FirstName = returnDetail.FirstName,
+            //        LastName = returnDetail.LastName,
+            //        DateOfPurchase = returnDetail.DateOfPurchase,
+            //        DateOfReceiving = returnDetail.DateOfReceiving,
+            //        ProductName = returnDetail.ProductName,
+            //        Description = returnDetail.Description,
+            //    }) ;
 
-            FirstName = returnDetail.FirstName;
-            LastName = returnDetail.LastName;
-            test.ValidName();
+            //    context.SaveChanges();
+            //}
 
             return RedirectToAction(nameof(Main_Page));
         }
@@ -118,12 +130,12 @@ namespace INET_Project.Controllers
         public async Task<IActionResult> Order(ShippingDetail shipping)
         {
             LocalOrder = shipping;
-         
+
             return RedirectToAction(nameof(Summary));
         }
 
         public IActionResult Summary(ShippingDetail shipping)
-       {
+        {
             shipping = LocalOrder;
 
             var products = Products;
@@ -161,7 +173,7 @@ namespace INET_Project.Controllers
                 context.SaveChanges();
 
 
-                var clientID = context.Client.Select(x=>x.ClientID).Max();
+                var clientID = context.Client.Select(x => x.ClientID).Max();
 
                 context.Order.Add(new Order
                 {
@@ -170,20 +182,28 @@ namespace INET_Project.Controllers
                     SentToAddress = $"{shipping.Client.City}, {shipping.Client.Street} {shipping.Client.BuildingNumber}, {shipping.Client.Country}",
                     IsInvoiced = true
 
-                }) ;
+                });
 
                 context.SaveChanges();
 
 
-                var orderID = context.Order.Select(x => x.OrderID).Max();
-
                 context.OrderDetail.Add(new OrderDetail
                 {
-                    OrderID = orderID,
+                    OrderID = context.Order.LastOrDefault().OrderID,
                     Quantity = shipping.OrderDetail.Quantity,
                     UnitPrice = shipping.OrderDetail.UnitPrice,
                     ProductID = Products.Select(x => x.Product.ProductID).LastOrDefault(),
-                }) ;
+                });
+
+                context.SaveChanges();
+
+                var produktID = context.Product.Where(x => x.ProductID == Products.Select(x => x.Product.ProductID).LastOrDefault());
+
+
+                foreach (var item in produktID)
+                {
+                    item.QtAvailable = item.QtAvailable - 1;
+                }
 
                 context.SaveChanges();
 

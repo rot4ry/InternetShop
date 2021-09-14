@@ -15,6 +15,7 @@ namespace INET_Project
         public DbSet<Client> Client { get; set; }
         public DbSet<Order> Order { get; set; }
         public DbSet<OrderDetail> OrderDetail { get; set; }
+        //public DbSet<ReturnDetail> ReturnDetail { get; set; }
 
         string connectionString = "Server=DENNPC\\SQLEXPRESS;Database=INET;Trusted_Connection=True;";
 
