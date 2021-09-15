@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using INET_Project.Models;
+using System.Text.RegularExpressions;
 
 namespace INET_Project.Controllers
 {
@@ -24,7 +25,7 @@ namespace INET_Project.Controllers
 
             using (var context = new INETContext())
             {
-            
+
 
                 Products = context.Product
                 .Join(context.ProductPicture,
@@ -102,23 +103,54 @@ namespace INET_Project.Controllers
         [HttpPost("Home/Replacements")]
         public async Task<IActionResult> ReplacementsAsync(ReturnDetail returnDetail)
         {
-            //using (var context = new INETContext())
-            //{
-            //    context.ReturnDetail.Add(new ReturnDetail
-            //    {
-            //        OrderId = returnDetail.OrderId,
-            //        FirstName = returnDetail.FirstName,
-            //        LastName = returnDetail.LastName,
-            //        DateOfPurchase = returnDetail.DateOfPurchase,
-            //        DateOfReceiving = returnDetail.DateOfReceiving,
-            //        ProductName = returnDetail.ProductName,
-            //        Description = returnDetail.Description,
-            //    }) ;
 
-            //    context.SaveChanges();
-            //}
+            Regex rgxName = new Regex("^[A-Za-zżźćńółęąśŻŹĆĄŚĘŁÓŃ]");
 
-            return RedirectToAction(nameof(Main_Page));
+            Regex rgxId = new Regex("^[0-9]");
+
+            if (returnDetail.DateOfPurchase > returnDetail.DateOfReceiving || (returnDetail.DateOfPurchase > DateTime.Now || returnDetail.DateOfReceiving > DateTime.Now))
+            {
+                ModelState.AddModelError(nameof(returnDetail.DateOfPurchase), "Data zakupu nie może być późniejsza niż data otrzymania lub data aktualna. ");
+                return View();
+            }
+            else if (!rgxName.IsMatch(returnDetail.FirstName))
+            {
+                ModelState.AddModelError(nameof(returnDetail.FirstName), "Imię może składać się z samych liter. ");
+                return View();
+            }
+            else if (!rgxId.IsMatch(Convert.ToString(returnDetail.OrderId)))
+            {
+                ModelState.AddModelError(nameof(returnDetail.OrderId), "Id składa się z samych cyfr. ");
+                return View();
+            }
+            else if (!rgxName.IsMatch(returnDetail.LastName))
+            {
+
+                ModelState.AddModelError(nameof(returnDetail.LastName), "Nazwisko może składać się z samych liter. ");
+                return View();
+            }
+            else
+            {
+                //using (var context = new INETContext())
+                //{
+                //    context.ReturnDetail.Add(new ReturnDetail
+                //    {
+                //        OrderId = returnDetail.OrderId,
+                //        FirstName = returnDetail.FirstName,
+                //        LastName = returnDetail.LastName,
+                //        DateOfPurchase = returnDetail.DateOfPurchase,
+                //        DateOfReceiving = returnDetail.DateOfReceiving,
+                //        ProductName = returnDetail.ProductName,
+                //        Description = returnDetail.Description,
+                //    });
+
+                //    context.SaveChanges();
+                //}
+
+                return RedirectToAction(nameof(Main_Page));
+
+            }
+
         }
 
         public IActionResult Order()
@@ -130,6 +162,20 @@ namespace INET_Project.Controllers
         public async Task<IActionResult> Order(ShippingDetail shipping)
         {
             LocalOrder = shipping;
+
+            Regex rgxName = new Regex("^[A-Za-zżźćńółęąśŻŹĆĄŚĘŁÓŃ]");
+
+            if (!rgxName.IsMatch(shipping.Client.FirstName))
+            {
+                ModelState.AddModelError(nameof(shipping.Client.FirstName), "Imię może składać się z samych liter. ");
+                return View();
+            }
+            else if (!rgxName.IsMatch(Convert.ToString(shipping.Client.SecondName)))
+            {
+                ModelState.AddModelError(nameof(shipping.Client.SecondName), "Nazwisko może składać się z samych liter. ");
+                return View();
+            }
+
 
             return RedirectToAction(nameof(Summary));
         }
@@ -189,11 +235,11 @@ namespace INET_Project.Controllers
 
                 context.OrderDetail.Add(new OrderDetail
                 {
-                    OrderID = context.Order.LastOrDefault().OrderID,
+                    OrderID = context.Order.OrderBy(o => o.OrderID).LastOrDefault().OrderID,
                     Quantity = shipping.OrderDetail.Quantity,
                     UnitPrice = shipping.OrderDetail.UnitPrice,
-                    ProductID = Products.Select(x => x.Product.ProductID).LastOrDefault(),
-                });
+                    ProductID = Products.Select(x => x.Product.ProductID).Last()
+                }) ;
 
                 context.SaveChanges();
 
