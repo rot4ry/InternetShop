@@ -1,4 +1,4 @@
-﻿@model INET_Project.Models.DemoProduct
+﻿@model INET_Project.Models.ProductModel
 @{
     ViewData["Title"] = "Dashboard";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
@@ -9,90 +9,48 @@
     <hr />
     <div class="row">
         <div class="col-md-4">
-            <form asp-action="Dashboard">
+            <form asp-action="Dashboard" enctype="multipart/form-data">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="form-group">
-                    <label asp-for="ProductName" class="control-label"></label>
-                    <input asp-for="ProductName" class="form-control" />
-                    <span asp-validation-for="ProductName" class="text-danger"></span>
+                    <label asp-for="Product.ProductName" class="control-label"></label>
+                    <input asp-for="Product.ProductName" class="form-control" />
+                    <span asp-validation-for="Product.ProductName" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="Description" class="control-label"></label>
-                    <input asp-for="Description" class="form-control" />
-                    <span asp-validation-for="Description" class="text-danger"></span>
+                    <label asp-for="Product.ProductDescription" class="control-label"></label>
+                    <input asp-for="Product.ProductDescription" class="form-control" />
+                    <span asp-validation-for="Product.ProductDescription" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <input hidden id="file" name="file" formenctype="multipart/form-data" />
-                    <div class="dropzone dropzone-file-area" id="fileUpload">
-                        <div class="dz-default dz-message">
-                            <span>Przeciągnij albo dodaj zdjęcie produktu</span>
-                        </div>
-                    </div>
+                    <span>Dodaj zdjęcie produktu</span>
+                    <input type="file" name="picture" accept="image/*" />
                 </div>
                 <div class="form-group">
-                    <label asp-for="Price" class="control-label"></label>
-                    <input asp-for="Price" class="form-control" />
-                    <span asp-validation-for="Price" class="text-danger"></span>
+                    <label asp-for="Product.UnitPrice" class="control-label"></label>
+                    <input asp-for="Product.UnitPrice" class="form-control" />
+                    <span asp-validation-for="Product.UnitPrice" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Product.QtAvailable" class="control-label"></label>
+                    <input asp-for="Product.QtAvailable" class="form-control" />
+                    <span asp-validation-for="Product.QtAvailable" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Product.Brand" class="control-label"></label>
+                    <input asp-for="Product.Brand" class="form-control" />
+                    <span asp-validation-for="Product.Brand" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Product.ProducerCode" class="control-label"></label>
+                    <input asp-for="Product.ProducerCode" class="form-control" />
+                    <span asp-validation-for="Product.ProducerCode" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <button type="submit" value="Create" id="submit-all" class="btn btn-dark btn-block"><i class="fa fa-plus-square"> Dodaj</i></button>
                 </div>
             </form>
         </div>
-    </div>
-
-    <div>
-        <h3>Lista produktów</h3>
-        @if ((ViewBag.Products as List<DemoProduct>).Any())
-        {
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>
-                            @Html.DisplayNameFor(model => model.ProductName)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.Description)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.ProductImage)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.Price)
-                        </th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var item in ViewBag.Products as List<DemoProduct>)
-                    {
-                        <tr>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.ProductName)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Description)
-                            </td>
-                            <td>
-                                <div class="thumbnail">
-                                    <img src="@Url.Content("/images/"+item.ProductImage)" alt="brak zdjęcia" class="img-thumbnail w-50" />
-                                </div>
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Price)
-                            </td>
-                            <td></td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-        }
-        else
-        {
-            <div class="alert alert-secondary" role="alert">
-                <i>Brak produktów</i>
-            </div>
-        }
     </div>
 </div>
 

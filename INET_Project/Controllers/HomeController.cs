@@ -18,14 +18,30 @@ namespace INET_Project.Controllers
         public static string FirstName { get; set; }
         public static string LastName { get; set; }
         public static List<ProductModel> Products { get; set; }
+        public static List<Order> AllOrders { get; set; }
         public static ShippingDetail LocalOrder { get; set; }
+        public static List<ProductModel> ListOfProducts { get; set; }
+
+
+        public static void UpdateProducts()
+        {
+            using (var context = new INETContext())
+            {
+
+                Products = context.Product
+               .Join(context.ProductPicture,
+               product => product.ProductID,
+               productPicture => productPicture.ProductID,
+              (product, productPicture) => new ProductModel { Product = product, ProductPicture = productPicture }).ToList();
+
+            }
+        }
 
         public IActionResult Main_Page(string search, int page = 1)
         {
 
             using (var context = new INETContext())
             {
-
 
                 Products = context.Product
                 .Join(context.ProductPicture,
@@ -131,21 +147,21 @@ namespace INET_Project.Controllers
             }
             else
             {
-                //using (var context = new INETContext())
-                //{
-                //    context.ReturnDetail.Add(new ReturnDetail
-                //    {
-                //        OrderId = returnDetail.OrderId,
-                //        FirstName = returnDetail.FirstName,
-                //        LastName = returnDetail.LastName,
-                //        DateOfPurchase = returnDetail.DateOfPurchase,
-                //        DateOfReceiving = returnDetail.DateOfReceiving,
-                //        ProductName = returnDetail.ProductName,
-                //        Description = returnDetail.Description,
-                //    });
+                using (var context = new INETContext())
+                {
+                    context.ReturnDetail.Add(new ReturnDetail
+                    {
+                        OrderId = returnDetail.OrderId,
+                        FirstName = returnDetail.FirstName,
+                        LastName = returnDetail.LastName,
+                        DateOfPurchase = returnDetail.DateOfPurchase,
+                        DateOfReceiving = returnDetail.DateOfReceiving,
+                        ProductName = returnDetail.ProductName,
+                        Description = returnDetail.Description,
+                    });
 
-                //    context.SaveChanges();
-                //}
+                    context.SaveChanges();
+                }
 
                 return RedirectToAction(nameof(Main_Page));
 
@@ -239,7 +255,7 @@ namespace INET_Project.Controllers
                     Quantity = shipping.OrderDetail.Quantity,
                     UnitPrice = shipping.OrderDetail.UnitPrice,
                     ProductID = Products.Select(x => x.Product.ProductID).Last()
-                }) ;
+                });
 
                 context.SaveChanges();
 
@@ -248,7 +264,10 @@ namespace INET_Project.Controllers
 
                 foreach (var item in produktID)
                 {
-                    item.QtAvailable = item.QtAvailable - 1;
+                    if (item.QtAvailable >= 0)
+                    {
+                        item.QtAvailable = item.QtAvailable - shipping.OrderDetail.Quantity;
+                    }
                 }
 
                 context.SaveChanges();

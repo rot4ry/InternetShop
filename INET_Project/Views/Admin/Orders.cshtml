@@ -1,9 +1,61 @@
-﻿
+﻿@model IEnumerable<INET_Project.Models.Order>
+
+
 @{
-    ViewData["Title"] = "Orders";
+    ViewData["Title"] = "Zamówienia";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 <div class="container-fluid">
     <h1>Zamówienia</h1>
+</div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="page-heade">
+                <table class="table">
+
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.OrderID)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.ClientID)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.PreparedDate)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.IsInvoiced)
+                            </th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                        <tr>
+
+                            <td style="vertical-align:middle">
+                                <a class="active">
+                                    @Html.DisplayFor(modelItem => item.OrderID)
+                                </a>
+                            </td>
+                            <td style="vertical-align:middle">
+                                @Html.DisplayFor(modelItem => item.ClientID)
+                            </td>
+                            <td style="vertical-align:middle">
+                                @Html.DisplayFor(modelItem => item.PreparedDate)
+                            </td>
+                            <td style="vertical-align:middle">
+                                @Html.DisplayFor(modelItem => item.IsInvoiced)
+                            </td>
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 </div>
 

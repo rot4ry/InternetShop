@@ -1,0 +1,89 @@
+﻿@model INET_Project.Models.Product
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+
+@{
+    var products = INET_Project.Controllers.HomeController.Products;
+
+
+    if (Context.Request.Query["item"].FirstOrDefault() != null)
+    {
+        string itemid = Context.Request.Query["item"].FirstOrDefault();
+        products = products.Where(x => x.Product.ProductID == Convert.ToInt32(itemid)).ToList();
+        INET_Project.Controllers.HomeController.Products = products;
+    }
+
+}
+
+<h1>Usuwanie produktu</h1>
+
+<h3>Czy na pewno chcesz usunąć ten produkt?</h3>
+<div class="container-fluid">
+    <hr />
+    @foreach (var item in products)
+    {
+
+
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => item.Product.ProductID)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => item.Product.ProductID)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => item.Product.CategoryID)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => item.Product.CategoryID)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => item.Product.ProductName)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => item.Product.ProductName)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => item.Product.Brand)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => item.Product.Brand)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => item.Product.UnitPrice)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => item.Product.UnitPrice)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => item.Product.QtAvailable)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => item.Product.QtAvailable)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => item.Product.ProducerCode)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => item.Product.ProducerCode)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => item.Product.ProductDescription)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => item.Product.ProductDescription)
+            </dd>
+        </dl>
+
+    }
+
+    <form asp-action="Delete">
+        <input type="submit" value="Usuń produkt" class="btn btn-danger" /> 
+        <a class="btn mr-md-2 mb-md-0 mb-2 btn-dark" asp-controller="Admin" asp-action="Products">Cofnij</a>
+    </form>
+</div>

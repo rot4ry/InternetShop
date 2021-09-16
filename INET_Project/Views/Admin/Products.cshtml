@@ -1,60 +1,64 @@
-﻿@model INET_Project.Models.DemoProduct
+﻿@model IEnumerable<INET_Project.Models.ProductModel>
 @{
     ViewData["Title"] = "Products";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 <div class="container-fluid">
     <h3>Lista produktów</h3>
-    @if ((ViewBag.Products as List<DemoProduct>).Any())
-    {
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>
-                        @Html.DisplayNameFor(model => model.ProductName)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Description)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.ProductImage)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Price)
-                    </th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in ViewBag.Products as List<DemoProduct>)
-                {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.ProductName)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Description)
-                        </td>
-                        <td>
-                            <div class="thumbnail">
-                                <img src="@Url.Content("/images/"+item.ProductImage)" alt="brak zdjęcia" class="img-thumbnail w-50" />
-                            </div>
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Price)
-                        </td>
-                        <td></td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-    }
-    else
-    {
-        <div class="alert alert-secondary" role="alert">
-            <i>Brak produktów</i>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="page-heade">
+                    <table class="table">
+
+                        <thead>
+                            <tr>
+                                <th>
+
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Product.ProductName)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Product.UnitPrice)
+                                </th>
+                                <th>
+
+                                </th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+
+                                        @if (item.ProductPicture.PicturePath != null)
+                                        {
+                                            <img src="/@item.ProductPicture.PicturePath" width="150" height="150" style="border: 4px inset #343a40;">
+                                        }
+
+                                    </td>
+                                    <td style="vertical-align:middle">
+                                        <a class="active">
+                                            @Html.DisplayFor(modelItem => item.Product.ProductName)
+                                        </a>
+                                    </td>
+                                    <td style="vertical-align:middle">
+                                        @Html.DisplayFor(modelItem => item.Product.UnitPrice) zł
+                                    </td>
+                                    <td style="vertical-align:middle">
+                                        <a class="btn mr-md-2 mb-md-0 mb-2 btn-dark" asp-action="Edit" asp-route-item="@item.Product.ProductID">Edycja</a>
+                                            <a class="btn mr-md-2 mb-md-0 mb-2 btn-dark" asp-action="Delete" asp-route-item="@item.Product.ProductID">Usuń</a>
+                                        <!---button type="button" style="" class="btn mr-md-2 mb-md-0 mb-2 btn-dark"><i class="fa fa-shopping-cart fa-lg"></i>+</button--->
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
-    }
 </div>
 
 @section Scripts {

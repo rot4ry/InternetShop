@@ -18,7 +18,10 @@
         string itemid = Context.Request.Query["item"].FirstOrDefault();
         products = products.Where(x => x.Product.ProductID == Convert.ToInt32(itemid)).ToList();
         INET_Project.Controllers.HomeController.Products = products;
+
+
     }
+
 
 }
 

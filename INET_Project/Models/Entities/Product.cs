@@ -18,9 +18,11 @@ namespace INET_Project.Models
         public decimal UnitPrice { get; set; }
         [Display(Name = "Ilość produktów")]
         public int QtAvailable { get; set; }
+        [Display(Name = "Kod producenta")]
         public string ProducerCode { get; set; }
-        
+
         #nullable enable
+        [Display(Name = "Opis produktu")]
         public string? ProductDescription { get; set; } 
     }
 }
